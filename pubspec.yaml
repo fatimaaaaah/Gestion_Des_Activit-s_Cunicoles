@@ -39,6 +39,7 @@ dependencies:
   dots_indicator: ^3.0.0
   carousel_slider: ^4.2.1
   foundation: ^0.0.5
+  fl_chart: ^0.68.0
 
 dev_dependencies:
   flutter_test:

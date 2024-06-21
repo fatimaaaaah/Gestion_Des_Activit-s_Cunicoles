@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import './acceuil/home.dart';
-import './signup.dart';
-import './description.dart';
+import '../acceuil/home.dart';
 
-class FermePage extends StatelessWidget {
+class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,10 +12,7 @@ class FermePage extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => SignupPage()),
-                          );
+            Navigator.pop(context);
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -35,7 +30,7 @@ class FermePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Image.asset(
-                "../assets/images/images.png", 
+                "./../../assets/images/logo/images.png", 
                 height: 50,
                 width: 50,
                 fit: BoxFit.contain,
@@ -54,7 +49,7 @@ class FermePage extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        "Ces informations nous permettrons de mieux vous connnaitre",
+                        "Accédez à vos ressources et gérez vos lapins facilement.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 15,
@@ -68,12 +63,9 @@ class FermePage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: <Widget>[
-                        InputField(label: "Nom de la ferme"),
+                        inputFile(label: "Nom d'utilisateur"),
                         SizedBox(height: 10), 
-                        InputField(label: "Adresse"),
-                        SizedBox(height: 10), 
-                         InputField(label: "Date de création", placeholder: "JJ/MM/AAAA"),
-                        SizedBox(height: 10), 
+                         PasswordField(),
                       ],
                     ),
                   ),
@@ -92,12 +84,12 @@ class FermePage extends StatelessWidget {
                         ),
                       ),
                       child: MaterialButton(
-                        minWidth: double.infinity,
+                        minWidth: double.infinity, 
                         height: 60,
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => MySliderScreen()),
+                            MaterialPageRoute(builder: (context) => HomePage()),
                           );
                         },
                         color: Colors.green,
@@ -106,7 +98,7 @@ class FermePage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(80),
                         ),
                         child: Text(
-                          "S'inscrire",
+                          "Se connecter",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
@@ -126,17 +118,53 @@ class FermePage extends StatelessWidget {
   }
 }
 
-class InputField extends StatelessWidget {
-  final String label;
-  final bool obscureText;
-  final String? placeholder;
 
-  const InputField({
-    Key? key,
-    required this.label,
-    this.obscureText = false,
-    this.placeholder,
-  }) : super(key: key);
+Widget inputFile({required String label, bool obscureText = false}) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Text(
+        label,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w400,
+          color: Colors.black87,
+        ),
+      ),
+      SizedBox(
+        height: 5,
+      ),
+      TextField(
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10), 
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black), 
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black), 
+          ),
+        ),
+      ),
+      SizedBox(height: 20),
+    ],
+  );
+}
+
+class PasswordField extends StatefulWidget {
+  @override
+  _PasswordFieldState createState() => _PasswordFieldState();
+}
+
+class _PasswordFieldState extends State<PasswordField> {
+  bool _obscureText = true;
+
+  void _toggleVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +172,7 @@ class InputField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          label,
+          "Mot de passe",
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,
@@ -154,10 +182,13 @@ class InputField extends StatelessWidget {
         SizedBox(
           height: 5,
         ),
-        TextField(
-          obscureText: obscureText,
+        TextFormField(
+          obscureText: _obscureText,
           decoration: InputDecoration(
-            hintText: placeholder, 
+            suffixIcon: IconButton(
+              icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+              onPressed: _toggleVisibility,
+            ),
             contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black),

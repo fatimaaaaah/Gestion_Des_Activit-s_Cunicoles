@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import './acceuil/home.dart';
+import '../acceuil/home.dart';
+import './signup.dart';
+import '../description/description.dart';
 
-class LoginPage extends StatelessWidget {
+class FermePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +14,10 @@ class LoginPage extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => SignupPage()),
+                          );
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -30,7 +35,7 @@ class LoginPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Image.asset(
-                "../assets/images/images.png", // Remplacez par le chemin de votre image de lapin
+                "../../../assets/images/logo/images.png", 
                 height: 50,
                 width: 50,
                 fit: BoxFit.contain,
@@ -49,7 +54,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        "Accédez à vos ressources et gérez vos lapins facilement.",
+                        "Ces informations nous permettrons de mieux vous connnaitre",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 15,
@@ -63,9 +68,12 @@ class LoginPage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: <Widget>[
-                        inputFile(label: "Nom d'utilisateur"),
+                        InputField(label: "Nom de la ferme"),
                         SizedBox(height: 10), 
-                         PasswordField(),
+                        InputField(label: "Adresse"),
+                        SizedBox(height: 10), 
+                         InputField(label: "Date de création", placeholder: "JJ/MM/AAAA"),
+                        SizedBox(height: 10), 
                       ],
                     ),
                   ),
@@ -84,7 +92,7 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       child: MaterialButton(
-                        minWidth: double.infinity, 
+                        minWidth: double.infinity,
                         height: 60,
                         onPressed: () {
                           Navigator.pushReplacement(
@@ -98,7 +106,7 @@ class LoginPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(80),
                         ),
                         child: Text(
-                          "Se connecter",
+                          "S'inscrire",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
@@ -118,53 +126,17 @@ class LoginPage extends StatelessWidget {
   }
 }
 
+class InputField extends StatelessWidget {
+  final String label;
+  final bool obscureText;
+  final String? placeholder;
 
-Widget inputFile({required String label, bool obscureText = false}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        label,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.w400,
-          color: Colors.black87,
-        ),
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      TextField(
-        obscureText: obscureText,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10), 
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black), 
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black), 
-          ),
-        ),
-      ),
-      SizedBox(height: 20),
-    ],
-  );
-}
-
-class PasswordField extends StatefulWidget {
-  @override
-  _PasswordFieldState createState() => _PasswordFieldState();
-}
-
-class _PasswordFieldState extends State<PasswordField> {
-  bool _obscureText = true;
-
-  void _toggleVisibility() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
-  }
+  const InputField({
+    Key? key,
+    required this.label,
+    this.obscureText = false,
+    this.placeholder,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +144,7 @@ class _PasswordFieldState extends State<PasswordField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          "Mot de passe",
+          label,
           style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,
@@ -182,13 +154,10 @@ class _PasswordFieldState extends State<PasswordField> {
         SizedBox(
           height: 5,
         ),
-        TextFormField(
-          obscureText: _obscureText,
+        TextField(
+          obscureText: obscureText,
           decoration: InputDecoration(
-            suffixIcon: IconButton(
-              icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
-              onPressed: _toggleVisibility,
-            ),
+            hintText: placeholder, 
             contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './acceuil/home.dart';
+import '../acceuil/home.dart';
 import './ferme.dart';
 
 class SignupPage extends StatelessWidget {
@@ -34,7 +34,7 @@ class SignupPage extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: 20),
                 Image.asset(
-                  "../assets/images/images.png", 
+                  "../../../assets/images/logo/images.png", 
                   height: 50,
                   width: 50,
                   fit: BoxFit.contain,

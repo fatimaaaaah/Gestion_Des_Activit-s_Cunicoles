@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("../assets/sauthentifier/welcome.jpg"),
+                image: AssetImage("../../../assets/images/sauthentifier/welcome.jpg"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -89,7 +89,7 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(builder: (context) => SignupPage()),
                             );
                           },
-                          color: Colors.green, // Couleur définie pour le bouton S'inscrire
+                          color: Colors.green, 
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),

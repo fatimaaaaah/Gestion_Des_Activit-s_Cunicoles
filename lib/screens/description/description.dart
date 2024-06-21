@@ -2,8 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import './acceuil/home.dart';
-
+import '../acceuil/home.dart';
 
 class MySliderScreen extends StatelessWidget {
   const MySliderScreen({super.key});
@@ -23,27 +22,27 @@ class MySlider extends StatefulWidget {
 
 class _MySliderState extends State<MySlider> {
   final List<String> imageUrls = [
-    "assets/images/welcome5.gif",
-    "assets/images/test-voix.gif",
-    "assets/images/gagnerr.gif",
-    "assets/images/devenir.gif",
-    "assets/images/incident.gif",
+    "../../../assets/images/logo/images.png",
+    "../../../assets/images/logo/images.png",
+    "../../../assets/images/logo/images.png",
+    "../../../assets/images/logo/images.png",
+    "../../../assets/images/logo/images.png",
   ];
 
   final List<String> titles = [
-    "QOS Ambassadors",
-    "Tester",
-    "Gagner",
-    "Devenir",
-    "Remonter",
+    "Bienvenue",
+    "Suivi des Lapins",
+    "Gestion de l'Alimentation",
+    "Suivi de Santé",
+    "Gestion Reproduction",
   ];
 
   final List<String> subtitles = [
-    "Bienvenue dans la communauté des QOS Ambassadors",
-    "Tester la qualité réseau et voix.",
-    "Participer aux challenges pour gagner des cadeaux.",
-    "Faites le plus de tests possibles et devenez le meilleur des ambassadeurs.",
-    "Remonter les incidents pour suivi.",
+    "Bienvenue dans votre application de gestion des activités cunicoles",
+    "Gérez efficacement le suivi de vos lapins avec des fiches individuelles détaillées.",
+    "Planifiez et surveillez l'alimentation de vos lapins pour une croissance optimale.",
+    "Suivez la santé de vos lapins avec des rappels pour les soins et les vaccinations.",
+    "Suivez et gérez les cycles de reproduction de vos lapins pour optimiser votre élevage.",
   ];
 
   int _currentIndex = 0;
@@ -77,14 +76,13 @@ class _MySliderState extends State<MySlider> {
                             top: 10.0,
                             left: 0.0,
                             right: 0.0,
-                            //bottom: 60.0,
                             child: Text(
                               titles[index],
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 fontSize: 22.0,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.deepOrange,
+                                color: Colors.green,
                               ),
                             ),
                           ),
@@ -132,7 +130,6 @@ class _MySliderState extends State<MySlider> {
                           MaterialStateProperty.all<Color>(Colors.white),
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Colors.white),
-                      //  elevation: MaterialStateProperty.all<double>(0.6),
                       padding: MaterialStateProperty.all<EdgeInsets>(
                         const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 10),
@@ -180,7 +177,7 @@ class _MySliderState extends State<MySlider> {
                         height: _showFinishButton ? 50.0 : 0,
                         width: 270,
                         decoration: BoxDecoration(
-                          color: Colors.deepOrange,
+                          color: Colors.green,
                           borderRadius: BorderRadius.circular(
                               _showFinishButton ? 15.0 : 0),
                         ),
@@ -213,7 +210,7 @@ class _MySliderState extends State<MySlider> {
                       decorator: DotsDecorator(
                         color: Colors.grey[300]!, // Couleur des points inactifs
                         activeColor:
-                            Colors.deepOrange, // Couleur du point actif
+                            Colors.black, // Couleur du point actif
                         size: const Size.square(
                             12.0), // Augmentez la taille des points
                         activeSize: const Size(20.0, 12.0),
