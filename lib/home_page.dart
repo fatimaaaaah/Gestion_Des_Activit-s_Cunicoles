@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
                         ),
                         SizedBox(height: 20),
                         Text(
-                          "Bienvenue dans l'application qui permet de gérer efficacement les activités liées aux lapins.",
+                          "Bienvenue dans l'application qui vous permet de gérer efficacement vos lapins.",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 16,
@@ -67,7 +67,7 @@ class HomePage extends StatelessWidget {
                             );
                           },
                           shape: RoundedRectangleBorder(
-                            side: BorderSide(color: Colors.black),
+                            side: BorderSide(color: Colors.green),
                             borderRadius: BorderRadius.circular(50),
                           ),
                           child: Text(
@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 18,
-                              color: Colors.white,
+                              color: Colors.green,
                             ),
                           ),
                         ),
@@ -89,14 +89,14 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(builder: (context) => SignupPage()),
                             );
                           },
-                          color: Color(0xff0095FF), // Couleur définie pour le bouton S'inscrire
+                          color: Colors.green, // Couleur définie pour le bouton S'inscrire
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
                           child: Text(
                             "S'inscrire",
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.w600,
                               fontSize: 18,
                             ),

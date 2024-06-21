@@ -9,19 +9,20 @@ class SignupPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 20,
-            color: Colors.black,
-          ),
+      elevation: 0,
+      backgroundColor: Colors.white,
+      leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: Icon(
+          Icons.arrow_back_ios,
+          size: 20,
+          color: Colors.black,
         ),
       ),
+    ),
+
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
@@ -33,7 +34,7 @@ class SignupPage extends StatelessWidget {
               children: <Widget>[
                 SizedBox(height: 20),
                 Image.asset(
-                  "../assets/images/images.png", // Remplacez par le chemin de votre image de lapin
+                  "../assets/images/images.png", 
                   height: 50,
                   width: 50,
                   fit: BoxFit.contain,
@@ -46,7 +47,7 @@ class SignupPage extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 Text(
-                  "Remplissez le formulaire pour vous inscrire",
+                  "Inscrivez-vous pour accéder à toutes les fonctionnalités de l'application.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15,
@@ -56,39 +57,54 @@ class SignupPage extends StatelessWidget {
                 SizedBox(height: 20),
                 InputField(label: "Nom"),
                 InputField(label: "Prénom"),
-                GenderDropdown(), // Liste déroulante pour le sexe
+                GenderDropdown(), 
                InputField(
                       label: "Date de naissance",
-                      placeholder: "JJ/MM/AAAA", // Placeholder text for date format
+                      placeholder: "JJ/MM/AAAA", 
 ),
                 InputField(label: "Lieu"),
                 InputField(label: "Téléphone"),
-                PasswordField(), // Champ de mot de passe avec option pour voir le texte
-                ConfirmPasswordField(), // Champ de confirmation de mot de passe
+                PasswordField(), 
+                ConfirmPasswordField(), 
                 SizedBox(height: 20),
-                MaterialButton(
-                  minWidth: double.infinity,
-                  height: 60,
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => FermePage()),
-                    );
-                  },
-                  color: Color(0xff0095FF),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(80),
-                  ),
-                  child: Text(
-                    "Continuer ",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                      color: Colors.white,
+               Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    child: Container(
+                      padding: EdgeInsets.only(top: 3, left: 3),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(80),
+                        border: Border(
+                          bottom: BorderSide(color: Colors.black),
+                          top: BorderSide(color: Colors.black),
+                          left: BorderSide(color: Colors.black),
+                          right: BorderSide(color: Colors.black),
+                        ),
+                      ),
+                      child: MaterialButton(
+                        minWidth: double.infinity,
+                        height: 60,
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => FermePage()),
+                          );
+                        },
+                        color: Colors.green,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80),
+                        ),
+                        child: Text(
+                          "Continuer",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
           ),
@@ -98,7 +114,7 @@ class SignupPage extends StatelessWidget {
   }
 }
 
-// Widget pour les champs de texte
+
 class InputField extends StatelessWidget {
   final String label;
   final bool obscureText;
@@ -146,7 +162,6 @@ class InputField extends StatelessWidget {
   }
 }
 
-// Widget pour la liste déroulante du sexe
 class GenderDropdown extends StatefulWidget {
   @override
   _GenderDropdownState createState() => _GenderDropdownState();
@@ -204,7 +219,7 @@ class _GenderDropdownState extends State<GenderDropdown> {
   }
 }
 
-// Widget pour le champ de mot de passe avec option pour voir le texte
+
 class PasswordField extends StatefulWidget {
   @override
   _PasswordFieldState createState() => _PasswordFieldState();
@@ -258,7 +273,6 @@ class _PasswordFieldState extends State<PasswordField> {
 }
 
 
-// Widget pour le champ de mot de passe avec option pour voir le texte
 class ConfirmPasswordField extends StatefulWidget {
   @override
   _ConfirmPasswordFieldState createState() => _ConfirmPasswordFieldState();

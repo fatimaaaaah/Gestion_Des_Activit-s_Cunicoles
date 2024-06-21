@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import './acceuil/home.dart';
+import './signup.dart';
+import './description.dart';
 
 class FermePage extends StatelessWidget {
   @override
@@ -12,7 +14,10 @@ class FermePage extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => SignupPage()),
+                          );
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -30,7 +35,7 @@ class FermePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Image.asset(
-                "../assets/images/images.png", // Remplacez par le chemin de votre image de lapin
+                "../assets/images/images.png", 
                 height: 50,
                 width: 50,
                 fit: BoxFit.contain,
@@ -58,21 +63,21 @@ class FermePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20), // Espace entre les champs de saisie
+                  SizedBox(height: 20), 
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: <Widget>[
-                        inputFile(label: "Nom de la ferme"),
-                        SizedBox(height: 10), // Espace entre les champs de saisie
-                        inputFile(label: "Adresse"),
-                        SizedBox(height: 10), // Espace entre les champs de saisie
-                         inputFile(label: "Date de création", placeholder: "JJ/MM/AAAA"),
-                        SizedBox(height: 10), // Espace entre les champs de saisie
+                        InputField(label: "Nom de la ferme"),
+                        SizedBox(height: 10), 
+                        InputField(label: "Adresse"),
+                        SizedBox(height: 10), 
+                         InputField(label: "Date de création", placeholder: "JJ/MM/AAAA"),
+                        SizedBox(height: 10), 
                       ],
                     ),
                   ),
-                  SizedBox(height: 20), // Espace sous les champs de saisie
+                  SizedBox(height: 20),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Container(
@@ -87,15 +92,15 @@ class FermePage extends StatelessWidget {
                         ),
                       ),
                       child: MaterialButton(
-                        minWidth: 200, // Largeur minimale du bouton
+                        minWidth: double.infinity,
                         height: 60,
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
+                            MaterialPageRoute(builder: (context) => MySliderScreen()),
                           );
                         },
-                        color: Color(0xff0095FF),
+                        color: Colors.green,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(80),
@@ -105,7 +110,7 @@ class FermePage extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -121,35 +126,49 @@ class FermePage extends StatelessWidget {
   }
 }
 
-// Widget for text field
-Widget inputFile({required String label}) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        label,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 15,
-          fontWeight: FontWeight.w400,
-          color: Colors.black87,
-        ),
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      TextField(
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10), // Espacement intérieur
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black), // Bordure normale
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black), // Bordure lorsque le champ est sélectionné
+class InputField extends StatelessWidget {
+  final String label;
+  final bool obscureText;
+  final String? placeholder;
+
+  const InputField({
+    Key? key,
+    required this.label,
+    this.obscureText = false,
+    this.placeholder,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+            color: Colors.black87,
           ),
         ),
-      ),
-      SizedBox(height: 20),
-    ],
-  );
+        SizedBox(
+          height: 5,
+        ),
+        TextField(
+          obscureText: obscureText,
+          decoration: InputDecoration(
+            hintText: placeholder, 
+            contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
+          ),
+        ),
+        SizedBox(height: 20),
+      ],
+    );
+  }
 }

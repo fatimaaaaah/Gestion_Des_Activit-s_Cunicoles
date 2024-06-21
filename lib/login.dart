@@ -49,7 +49,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        "Connectez-vous pour accéder à toutes les fonctionnalités de l'application",
+                        "Accédez à vos ressources et gérez vos lapins facilement.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 15,
@@ -58,18 +58,18 @@ class LoginPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20), // Espace entre les champs de saisie
+                  SizedBox(height: 20), 
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: <Widget>[
                         inputFile(label: "Nom d'utilisateur"),
-                        SizedBox(height: 10), // Espace entre les champs de saisie
-                        inputFile(label: "Mot de passe", obscureText: true),
+                        SizedBox(height: 10), 
+                         PasswordField(),
                       ],
                     ),
                   ),
-                  SizedBox(height: 20), // Espace sous les champs de saisie
+                  SizedBox(height: 20),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Container(
@@ -84,7 +84,7 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       child: MaterialButton(
-                        minWidth: 200, // Largeur minimale du bouton
+                        minWidth: double.infinity, 
                         height: 60,
                         onPressed: () {
                           Navigator.pushReplacement(
@@ -92,7 +92,7 @@ class LoginPage extends StatelessWidget {
                             MaterialPageRoute(builder: (context) => HomePage()),
                           );
                         },
-                        color: Color(0xff0095FF),
+                        color: Colors.green,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(80),
@@ -102,7 +102,7 @@ class LoginPage extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
                       ),
@@ -118,7 +118,7 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-// Widget for text field
+
 Widget inputFile({required String label, bool obscureText = false}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,12 +138,12 @@ Widget inputFile({required String label, bool obscureText = false}) {
       TextField(
         obscureText: obscureText,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10), // Espacement intérieur
+          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10), 
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black), // Bordure normale
+            borderSide: BorderSide(color: Colors.black), 
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black), // Bordure lorsque le champ est sélectionné
+            borderSide: BorderSide(color: Colors.black), 
           ),
         ),
       ),
