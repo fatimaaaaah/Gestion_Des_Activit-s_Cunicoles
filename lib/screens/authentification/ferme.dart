@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../acceuil/home.dart';
-import './signup.dart';
+import '../authentification/signup.dart';
 import '../description/description.dart';
 
 class FermePage extends StatelessWidget {
@@ -15,9 +15,9 @@ class FermePage extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => SignupPage()),
-                          );
+              context,
+              MaterialPageRoute(builder: (context) => SignupPage()),
+            );
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -54,7 +54,7 @@ class FermePage extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        "Ces informations nous permettrons de mieux vous connnaitre",
+                        "Ces informations nous permettrons de mieux vous connaître",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 15,
@@ -72,8 +72,7 @@ class FermePage extends StatelessWidget {
                         SizedBox(height: 10), 
                         InputField(label: "Adresse"),
                         SizedBox(height: 10), 
-                         InputField(label: "Date de création", placeholder: "JJ/MM/AAAA"),
-                        SizedBox(height: 10), 
+                        InputField(label: "Date de création", placeholder: "JJ/MM/AAAA"),
                       ],
                     ),
                   ),
@@ -97,7 +96,7 @@ class FermePage extends StatelessWidget {
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
+                            MaterialPageRoute(builder: (context) => MySliderScreen()),
                           );
                         },
                         color: Colors.green,
@@ -116,6 +115,7 @@ class FermePage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SizedBox(height: 10), // Espace ajouté sous le bouton "S'inscrire"
                 ],
               ),
             ),

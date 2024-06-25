@@ -22,11 +22,11 @@ class MySlider extends StatefulWidget {
 
 class _MySliderState extends State<MySlider> {
   final List<String> imageUrls = [
-    "../../../assets/images/logo/images.png",
-    "../../../assets/images/logo/images.png",
-    "../../../assets/images/logo/images.png",
-    "../../../assets/images/logo/images.png",
-    "../../../assets/images/logo/images.png",
+    "../../../assets/images/description/1.png",
+    "../../../assets/images/description/1.png",
+    "../../../assets/images/description/6.png",
+    "../../../assets/images/description/3.jpg",
+    "../../../assets/images/description/5.png",
   ];
 
   final List<String> titles = [
@@ -104,7 +104,7 @@ class _MySliderState extends State<MySlider> {
                     );
                   },
                   options: CarouselOptions(
-                    height: 400.0, // Augmentez la hauteur des slides
+                    height: 450.0, // Augmentez la hauteur des slides
                     enlargeCenterPage: true,
                     autoPlay: false,
                     aspectRatio: 16 / 9,

@@ -40,6 +40,10 @@ dependencies:
   carousel_slider: ^4.2.1
   foundation: ^0.0.5
   fl_chart: ^0.68.0
+  curved_navigation_bar: ^1.0.6
+  line_awesome_flutter: ^3.0.1
+  animated_theme_switcher: ^2.0.10
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:

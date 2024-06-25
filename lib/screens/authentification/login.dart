@@ -58,7 +58,7 @@ class LoginPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20), 
+                  
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
@@ -69,9 +69,9 @@ class LoginPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20), 
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Container(
                       padding: EdgeInsets.only(top: 3, left: 3),
                       decoration: BoxDecoration(
@@ -147,7 +147,6 @@ Widget inputFile({required String label, bool obscureText = false}) {
           ),
         ),
       ),
-      SizedBox(height: 20),
     ],
   );
 }
@@ -171,6 +170,7 @@ class _PasswordFieldState extends State<PasswordField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
+        SizedBox(height: 20), 
         Text(
           "Mot de passe",
           style: TextStyle(
@@ -178,9 +178,6 @@ class _PasswordFieldState extends State<PasswordField> {
             fontWeight: FontWeight.w400,
             color: Colors.black87,
           ),
-        ),
-        SizedBox(
-          height: 5,
         ),
         TextFormField(
           obscureText: _obscureText,
@@ -198,7 +195,6 @@ class _PasswordFieldState extends State<PasswordField> {
             ),
           ),
         ),
-        SizedBox(height: 20),
       ],
     );
   }
