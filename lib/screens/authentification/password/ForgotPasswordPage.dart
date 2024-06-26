@@ -41,7 +41,7 @@ class ForgotPasswordPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
+                      MaterialPageRoute(builder: (context) => NewPasswordPage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

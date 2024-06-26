@@ -83,10 +83,10 @@ class MyDrawer extends StatelessWidget {
               _buildSubListItem(context, 'Journal de vaccination', 4, onItemTapped),
             ],
           ),
-
+            const Divider(color: Colors.white),
           ListTile(
             title: const Text(
-              'Tableau de bord comptable simple et rapide',
+              'Tableau de bord',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,

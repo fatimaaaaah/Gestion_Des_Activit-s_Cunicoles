@@ -68,7 +68,6 @@ class LoginPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Container(
@@ -83,7 +82,7 @@ class LoginPage extends StatelessWidget {
                         ),
                       ),
                       child: MaterialButton(
-                        minWidth: double.infinity,
+                        minWidth: 300,
                         height: 60,
                         onPressed: () {
                           Navigator.pushReplacement(
