@@ -269,7 +269,7 @@ class ForgotPasswordPage extends StatelessWidget {
                     // Logique pour envoyer le lien de réinitialisation
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green, // Couleur du bouton en vert
+                    backgroundColor: Colors.green, // Couleur du bouton en vert
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20), // Radius sur le bouton
                     ),

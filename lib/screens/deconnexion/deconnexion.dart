@@ -25,6 +25,7 @@ class _DeconnexionPageState extends State<DeconnexionPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
+              backgroundColor: Colors.white,
               title: const Text('Gestion des activités cunicoles',
                   style: TextStyle(
                     color: Colors.black,
