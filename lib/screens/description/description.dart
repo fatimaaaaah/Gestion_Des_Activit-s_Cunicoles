@@ -22,11 +22,11 @@ class MySlider extends StatefulWidget {
 
 class _MySliderState extends State<MySlider> {
   final List<String> imageUrls = [
-    "../../../assets/images/description/1.png",
+    "../../../assets/images/description/10.png",
     "../../../assets/images/description/1.png",
     "../../../assets/images/description/6.png",
     "../../../assets/images/description/3.jpg",
-    "../../../assets/images/description/5.png",
+    "../../../assets/images/description/9.jpg",
   ];
 
   final List<String> titles = [
@@ -165,7 +165,7 @@ class _MySliderState extends State<MySlider> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (BuildContext context) {
-                            return const HomePage();
+                            return  HomePage();
                           }),
                         );
                       },

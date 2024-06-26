@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Your App Title',
+      title: 'Gestion des activites cunicoles',
       home: ProfileScreen(),
     );
   }
@@ -68,6 +68,10 @@ class ProfileScreen extends StatelessWidget {
                   ProfileListItem(
                     icon: Icons.password, // Exemple d'icône
                     text: 'Changer mot de passe',
+                  ),
+                   ProfileListItem(
+                    icon: Icons.comment, // Exemple d'icône
+                    text: "Conditions d'utilisation",
                   ),
                   SizedBox(height: 12), // Espacement entre les items
                   ProfileListItem(
