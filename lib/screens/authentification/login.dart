@@ -1,7 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../acceuil/home.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void _signIn(BuildContext context) async {
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        _showErrorDialog('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        _showErrorDialog('Wrong password provided for that user.');
+      }
+    }
+  }
+
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Error'),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,9 +111,9 @@ class LoginPage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: <Widget>[
-                        inputFile(label: "Nom d'utilisateur"),
+                        inputFile(controller: _emailController, label: "Nom d'utilisateur"),
                         SizedBox(height: 10),
-                        PasswordField(),
+                        PasswordField(controller: _passwordController),
                       ],
                     ),
                   ),
@@ -85,10 +134,7 @@ class LoginPage extends StatelessWidget {
                         minWidth: 300,
                         height: 60,
                         onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
-                          );
+                          _signIn(context);
                         },
                         color: Colors.green,
                         elevation: 0,
@@ -116,7 +162,7 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-Widget inputFile({required String label, bool obscureText = false}) {
+Widget inputFile({required TextEditingController controller, required String label, bool obscureText = false}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -133,6 +179,7 @@ Widget inputFile({required String label, bool obscureText = false}) {
         height: 5,
       ),
       TextField(
+        controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
@@ -149,6 +196,9 @@ Widget inputFile({required String label, bool obscureText = false}) {
 }
 
 class PasswordField extends StatefulWidget {
+  final TextEditingController controller;
+  PasswordField({required this.controller});
+
   @override
   _PasswordFieldState createState() => _PasswordFieldState();
 }
@@ -191,6 +241,7 @@ class _PasswordFieldState extends State<PasswordField> {
           ),
         ),
         TextFormField(
+          controller: widget.controller,
           obscureText: _obscureText,
           decoration: InputDecoration(
             suffixIcon: IconButton(
@@ -206,7 +257,7 @@ class _PasswordFieldState extends State<PasswordField> {
             ),
           ),
         ),
-        SizedBox(height: 10), // Espace en bas du champ mot de passe
+        SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -215,7 +266,7 @@ class _PasswordFieldState extends State<PasswordField> {
                 Checkbox(
                   value: _rememberMe,
                   onChanged: _toggleRememberMe,
-                  activeColor: Colors.green, // Case à cocher en vert
+                  activeColor: Colors.green,
                 ),
                 Text("Se souvenir de moi"),
               ],
@@ -255,23 +306,23 @@ class ForgotPasswordPage extends StatelessWidget {
               decoration: InputDecoration(
                 labelText: "E-mail",
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20), // Radius sur le champ e-mail
+                  borderRadius: BorderRadius.circular(20),
                 ),
               ),
             ),
             SizedBox(height: 20),
             Center(
               child: Container(
-                width: double.infinity, // Largeur du bouton
-                height: 50, // Hauteur du bouton
+                width: double.infinity,
+                height: 50,
                 child: ElevatedButton(
                   onPressed: () {
                     // Logique pour envoyer le lien de réinitialisation
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green, // Couleur du bouton en vert
+                    backgroundColor: Colors.green,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20), // Radius sur le bouton
+                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
                   child: Text(
