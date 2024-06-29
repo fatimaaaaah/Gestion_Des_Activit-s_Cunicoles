@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:projetlicence/screens/deconnexion/deconnexion.dart';
 import './screens/authentification/splashScreen.dart';
 import './screens/authentification/home_page.dart';
 import './screens/sujets/subjectFilePage.dart';
@@ -9,10 +9,8 @@ import './screens/journals/breedingJournalPage.dart';
 import './screens/journals/purchaseJournalPage.dart';
 import './screens/journals/salesJournalPage.dart';
 import './screens/notations/ratingPage.dart';
-import './screens/notifications/notificationPage.dart';
+import './screens/notifications/notifcation_tap.dart';
 import './screens/setting/settingsPage.dart';
-import './screens/dashordComptable/simpleDashboardPage.dart';
-import './screens/drawer/drawer_screen.dart';
 import './screens/profil/profil.dart';
 
 
@@ -40,11 +38,10 @@ class MyApp extends StatelessWidget {
         '/purchaseJournal': (context) => PurchaseJournalPage(),
         '/salesJournal': (context) => SalesJournalPage(),
         '/rating': (context) => RatingPage(),
-        '/notification': (context) => NotificationPage(),
+        '/notification': (context) => NotitcationTap(),
         '/settings': (context) => SettingsPage(),
-        '/simpleDashboard': (context) => SimpleDashboardPage(),
         '/profile': (context) => ProfileScreen(),
-        '/deconexion': (context) => ProfileScreen(),
+        '/deconexion': (context) => const DeconnexionPage(),
       },
     );
   }

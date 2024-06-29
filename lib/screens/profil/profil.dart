@@ -7,7 +7,7 @@ import '../setting/privacy.dart';
 import '../deconnexion/deconnexion.dart';
 import '../drawer/drawer_screen.dart';
 import '../setting/changePassword.dart';
-import '../notifications/notificationPage.dart';
+import '../notifications/notifcation_tap.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -28,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => NotificationPage()),
+                    MaterialPageRoute(builder: (context) => NotitcationTap()),
                   );
                 },
               ),

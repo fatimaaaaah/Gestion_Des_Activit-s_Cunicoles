@@ -38,7 +38,7 @@ class MyDrawer extends StatelessWidget {
           ),
           ListTile(
             title: const Text(
-              'Acceuil',
+              'Tableau de bord',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -46,7 +46,7 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
             leading: const FaIcon(
-              FontAwesomeIcons.home,
+              FontAwesomeIcons.chartLine,
               color: Colors.green,
               size: 30,
             ),
@@ -61,7 +61,7 @@ class MyDrawer extends StatelessWidget {
           _buildCategory(
             context,
             title: 'Sujets',
-            icon: FontAwesomeIcons.book,
+            icon: FontAwesomeIcons.moneyCheck,
             children: [
               _buildSubListItem(context, 'Gestion sujets', 1, onItemTapped),
               _buildSubListItem(context, 'Fiches sujets', 2, onItemTapped),
@@ -75,34 +75,13 @@ class MyDrawer extends StatelessWidget {
           _buildCategory(
             context,
             title: 'Journals',
-            icon: FontAwesomeIcons.book,
+            icon: FontAwesomeIcons.newspaper,
             children: [
               _buildSubListItem(context, 'Journal de reproduction', 1, onItemTapped),
               _buildSubListItem(context, 'Journal des achats', 2, onItemTapped),
               _buildSubListItem(context, 'Journal des ventes', 3, onItemTapped),
               _buildSubListItem(context, 'Journal de vaccination', 4, onItemTapped),
             ],
-          ),
-        
-          ListTile(
-            title: const Text(
-              'Tableau de bord',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            leading: const FaIcon(
-              FontAwesomeIcons.chartLine,
-              color: Colors.green,
-              size: 30,
-            ),
-            selected: selectedIndex == 6,
-            onTap: () {
-              onItemTapped(6);
-              Navigator.pop(context);
-            },
           ),
           const Divider(color: Colors.white),
           const DeconnexionPage(),

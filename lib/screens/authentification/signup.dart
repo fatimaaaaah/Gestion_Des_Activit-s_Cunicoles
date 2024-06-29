@@ -3,6 +3,8 @@ import '../acceuil/home.dart';
 import './ferme.dart';
 
 class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
