@@ -248,7 +248,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               SizedBox(height: 20,), // Espace entre les cartes et le texte suivant
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
+                child:  Text(
                   "Activités de la semaine",
                   style: TextStyle(
                     fontSize: 20,
@@ -256,19 +256,41 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   ),
                 ),
               ),
-              TaskCard(
+              const TaskCard(
                 title: 'Vérifier les stocks de nourriture',
                 description: 'Assurez-vous que les stocks de nourriture sont suffisants pour les lapins.',
               ),
-              TaskCard(
+              const TaskCard(
                 title: 'Vaccination des lapins',
                 description: 'Vérifiez les lapins qui doivent être vaccinés cette semaine.',
               ),
-              TaskCard(
+              const TaskCard(
                 title: 'Nettoyer les enclos',
                 description: 'Assurez-vous que les enclos sont propres pour prévenir les maladies.',
               ),
-              // Ajoutez d'autres éléments ici si nécessaire
+              SizedBox(height: 20,), // Espace entre les cartes et le texte suivant
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  "Conseils du jour",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const AdviceCard(
+                title: 'Bien-être des lapins',
+                description: 'Assurez-vous que vos lapins disposent d\'un espace suffisant pour se déplacer et jouer. Un bon espace contribue à leur bien-être général.',
+              ),
+              const AdviceCard(
+                title: 'Alimentation équilibrée',
+                description: 'Variez l\'alimentation de vos lapins en incluant des légumes frais et des granulés de haute qualité. Évitez les aliments trop riches en sucre.',
+              ),
+              const AdviceCard(
+                title: 'Surveillez la santé',
+                description: 'Observez quotidiennement vos lapins pour détecter tout signe de maladie ou de stress. Une intervention précoce peut prévenir des problèmes plus graves.',
+              ),
             ],
           );
         },
@@ -384,6 +406,33 @@ class TaskCard extends StatelessWidget {
             // Ajoutez ici la logique pour marquer la tâche comme terminée
           },
         ),
+      ),
+    );
+  }
+}
+
+class AdviceCard extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const AdviceCard({
+    required this.title,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      elevation: 2.0,
+      child: ListTile(
+        title: Text(
+          title,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        subtitle: Text(description),
       ),
     );
   }
