@@ -115,7 +115,10 @@ class _GestionsSujetsState extends State<GestionsSujets> {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.green, // Bouton "Voir Plus" vert
                                 ),
-                                child: Text('Voir Plus'),
+                                child: Text('Voir Plus',
+                                style: TextStyle(fontSize: 15.0, color: Colors.white),
+                                
+                                ),
                               ),
                             ),
                           ],

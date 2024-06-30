@@ -77,10 +77,9 @@ class _MyDrawerState extends State<MyDrawer> {
             },
             children: [
               _buildSubListItem(context, 'Gestion sujets', 1, widget.onItemTapped),
-              _buildSubListItem(context, 'Fiches sujets', 2, widget.onItemTapped),
-              _buildSubListItem(context, 'Achats sujets', 3, widget.onItemTapped),
-              _buildSubListItem(context, 'Mise en vente de sujets', 4, widget.onItemTapped),
-              _buildSubListItem(context, 'Notation de sujets', 5, widget.onItemTapped),
+              _buildSubListItem(context, 'Achats sujets', 2, widget.onItemTapped),
+              _buildSubListItem(context, 'Mise en vente de sujets', 3, widget.onItemTapped),
+              _buildSubListItem(context, 'Notation de sujets', 4, widget.onItemTapped),
             ],
           ),
           const Divider(color: Colors.white),
@@ -95,10 +94,10 @@ class _MyDrawerState extends State<MyDrawer> {
               });
             },
             children: [
-              _buildSubListItem(context, 'Journal de reproduction', 6, widget.onItemTapped),
-              _buildSubListItem(context, 'Journal des achats', 7, widget.onItemTapped),
-              _buildSubListItem(context, 'Journal des ventes', 8, widget.onItemTapped),
-              _buildSubListItem(context, 'Journal de vaccination', 9, widget.onItemTapped),
+              _buildSubListItem(context, 'Journal de reproduction', 5, widget.onItemTapped),
+              _buildSubListItem(context, 'Journal des achats', 6, widget.onItemTapped),
+              _buildSubListItem(context, 'Journal des ventes', 7, widget.onItemTapped),
+              _buildSubListItem(context, 'Journal de vaccination', 8, widget.onItemTapped),
             ],
           ),
           const Divider(color: Colors.white),
@@ -160,10 +159,10 @@ class _MyDrawerState extends State<MyDrawer> {
           color: Colors.green,
           size: 30,
         ),
-        children: children,
         onExpansionChanged: onExpansionChanged,
         initiallyExpanded: isExpanded,
-        iconColor: Colors.white, // Change la couleur de l'icône d'expansion lorsqu'elle est dépliée
+        iconColor: Colors.white,
+        children: children, // Change la couleur de l'icône d'expansion lorsqu'elle est dépliée
       ),
     );
   }

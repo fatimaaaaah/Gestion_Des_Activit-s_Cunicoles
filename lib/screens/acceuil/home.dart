@@ -118,27 +118,24 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       Navigator.pushNamed(context, '/gestion_sujets'); // Gestion Sujets
       break;
     case 2:
-      Navigator.pushNamed(context, '/fiche_sujets'); // Fiche Sujets
-      break;
-    case 3:
       Navigator.pushNamed(context, '/sell_subjects'); // Sell Subjects
       break;
-    case 4:
+    case 3:
       Navigator.pushNamed(context, '/purchase_journal'); // Purchase Journal
       break;
-    case 5:
+    case 4:
       Navigator.pushNamed(context, '/sales_journal'); // Sales Journal
       break;
-    case 6:
+    case 5:
       Navigator.pushNamed(context, '/notification_tap'); // Notification Tap
       break;
-    case 7:
+    case 6:
       Navigator.pushNamed(context, '/breeding_journal'); // Breeding Journal
       break;
-    case 8:
+    case 7:
       Navigator.pushNamed(context, '/buy_subjects'); // Buy Subjects
       break;
-    case 9:
+    case 8:
       Navigator.pushNamed(context, '/rating_page'); // Rating Page
       break;
     default:

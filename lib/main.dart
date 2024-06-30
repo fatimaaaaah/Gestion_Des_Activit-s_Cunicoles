@@ -12,7 +12,6 @@ import './screens/journals/salesJournalPage.dart';
 import './screens/notations/ratingPage.dart';
 import './screens/notifications/notifcation_tap.dart';
 import './constants/rabbit.dart'; // Import Rabbit class
-
 void main() {
   runApp(MyApp());
 }
