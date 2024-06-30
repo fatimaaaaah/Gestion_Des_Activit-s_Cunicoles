@@ -104,7 +104,7 @@ class _MyDrawerState extends State<MyDrawer> {
           const Divider(color: Colors.white),
           const DeconnexionPage(),
           const Divider(color: Colors.white),
-          ListTile(
+          const ListTile(
             title: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -149,7 +149,7 @@ class _MyDrawerState extends State<MyDrawer> {
       child: ExpansionTile(
         title: Text(
           title,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 16,
             fontWeight: FontWeight.bold,

@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:projetlicence/screens/profil/profil.dart';
 import '../drawer/drawer_screen.dart';
 import '../notifications/notifcation_tap.dart';
 import '../profil/profil.dart'; 
 import '../deconnexion/deconnexion.dart';
-import '../sujets/subjectFilePage.dart';
+import '../sujets/ficheSujets.dart';
+import '../sujets/gestionsSubject.dart';
 import '../sujets/sellSubjectsPage.dart';
 import '../sujets/buySubjectsPage.dart';
 import '../journals/breedingJournalPage.dart';
 import '../journals/purchaseJournalPage.dart';
 import '../journals/salesJournalPage.dart';
 import '../notations/ratingPage.dart';
-import '../setting/settingsPage.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -27,7 +30,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
     );
 
     _animation = Tween<double>(begin: 0, end: 1).animate(
@@ -57,7 +60,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           Stack(
             children: [
               IconButton(
-                icon: Icon(Icons.notifications), // Icône de notification par défaut
+                icon: const Icon(Icons.notifications), // Icône de notification par défaut
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -69,16 +72,16 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 top: 8,
                 right: 8,
                 child: Container(
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     minWidth: 16,
                     minHeight: 16,
                   ),
-                  child: Text(
+                  child: const Text(
                     '2', // Remplacez par le nombre de notifications non lues
                     style: TextStyle(
                       color: Colors.white,
@@ -91,9 +94,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(right: 10),
+            padding: const EdgeInsets.only(right: 10),
             child: IconButton(
-              icon: Icon(FontAwesomeIcons.user), // Icône utilisateur de FontAwesome
+              icon: const Icon(FontAwesomeIcons.user), // Icône utilisateur de FontAwesome
               onPressed: () {
                 Navigator.push(
                   context,
@@ -107,66 +110,44 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       drawer: MyDrawer(
         selectedIndex: 0, // Mettez à jour selectedIndex selon l'état de votre application
         onItemTapped: (index) {
-          // Gérer la navigation ici
-          switch (index) {
-            case 0:
-              Navigator.pushNamed(context, '/home');
-              break;
-            case 1:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SubjectFilePage()),
-              );
-              break;
-            case 2:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SellSubjectsPage()),
-              );
-              break;
-            case 3:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PurchaseJournalPage()),
-              );
-              break;
-            case 4:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SalesJournalPage()),
-              );
-              break;
-            case 6:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NotitcationTap()),
-              );
-              break;
-            case 7:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => BreedingJournalPage()),
-              );
-              break;
-            case 8:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => BuySubjectsPage()),
-              );
-              break;
-            case 9:
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => RatingPage()),
-              );
-              break;
-          }
-        },
+  switch (index) {
+    case 0:
+      Navigator.pushNamed(context, '/'); // Accueil
+      break;
+    case 1:
+      Navigator.pushNamed(context, '/gestion_sujets'); // Gestion Sujets
+      break;
+    case 2:
+      Navigator.pushNamed(context, '/fiche_sujets'); // Fiche Sujets
+      break;
+    case 3:
+      Navigator.pushNamed(context, '/sell_subjects'); // Sell Subjects
+      break;
+    case 4:
+      Navigator.pushNamed(context, '/purchase_journal'); // Purchase Journal
+      break;
+    case 5:
+      Navigator.pushNamed(context, '/sales_journal'); // Sales Journal
+      break;
+    case 6:
+      Navigator.pushNamed(context, '/notification_tap'); // Notification Tap
+      break;
+    case 7:
+      Navigator.pushNamed(context, '/breeding_journal'); // Breeding Journal
+      break;
+    case 8:
+      Navigator.pushNamed(context, '/buy_subjects'); // Buy Subjects
+      break;
+    case 9:
+      Navigator.pushNamed(context, '/rating_page'); // Rating Page
+      break;
+    default:
+      break;
+  }
+},
+
         onLogoutTapped: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const DeconnexionPage()),
-          );
+          Navigator.pushNamed(context, '/deconnexion'); // Déconnexion
         },
       ),
       body: LayoutBuilder(
@@ -181,12 +162,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               GridView.count(
                 crossAxisCount: crossAxisCount,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 children: <Widget>[
                   AnimatedCard(
                     animation: _animation,
                     delay: 0,
-                    child: DashboardCard(
+                    child: const DashboardCard(
                       icon: FontAwesomeIcons.paw,
                       title: 'Total Lapins',
                       value: '100',
@@ -196,7 +177,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   AnimatedCard(
                     animation: _animation,
                     delay: 200,
-                    child: DashboardCard(
+                    child: const DashboardCard(
                       icon: FontAwesomeIcons.stethoscope,
                       title: 'Lapins Malades',
                       value: '2',
@@ -206,7 +187,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   AnimatedCard(
                     animation: _animation,
                     delay: 400,
-                    child: DashboardCard(
+                    child: const DashboardCard(
                       icon: FontAwesomeIcons.heartbeat,
                       title: 'Lapins en Gestation',
                       value: '3',
@@ -216,7 +197,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   AnimatedCard(
                     animation: _animation,
                     delay: 600,
-                    child: DashboardCard(
+                    child: const DashboardCard(
                       icon: FontAwesomeIcons.box,
                       title: 'Stock de Nourriture',
                       value: '50kg',
@@ -226,7 +207,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   AnimatedCard(
                     animation: _animation,
                     delay: 800,
-                    child: DashboardCard(
+                    child: const DashboardCard(
                       icon: FontAwesomeIcons.moneyBill,
                       title: 'Ventes ce Mois',
                       value: '20',
@@ -236,7 +217,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   AnimatedCard(
                     animation: _animation,
                     delay: 1200,
-                    child: DashboardCard(
+                    child: const DashboardCard(
                       icon: FontAwesomeIcons.bell,
                       title: 'Rappels à Venir',
                       value: '5',
@@ -245,9 +226,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   ),
                 ],
               ),
-              SizedBox(height: 20,), // Espace entre les cartes et le texte suivant
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              const SizedBox(height: 20,), // Espace entre les cartes et le texte suivant
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child:  Text(
                   "Activités de la semaine",
                   style: TextStyle(
@@ -268,9 +249,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 title: 'Nettoyer les enclos',
                 description: 'Assurez-vous que les enclos sont propres pour prévenir les maladies.',
               ),
-              SizedBox(height: 20,), // Espace entre les cartes et le texte suivant
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              const SizedBox(height: 20,), // Espace entre les cartes et le texte suivant
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
                   "Conseils du jour",
                   style: TextStyle(
@@ -331,11 +312,12 @@ class DashboardCard extends StatelessWidget {
   final Color color;
 
   const DashboardCard({
+    Key? key,
     required this.icon,
     required this.title,
     required this.value,
     required this.color,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -383,9 +365,10 @@ class TaskCard extends StatelessWidget {
   final String description;
 
   const TaskCard({
+    Key? key,
     required this.title,
     required this.description,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -416,9 +399,10 @@ class AdviceCard extends StatelessWidget {
   final String description;
 
   const AdviceCard({
+    Key? key,
     required this.title,
     required this.description,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
