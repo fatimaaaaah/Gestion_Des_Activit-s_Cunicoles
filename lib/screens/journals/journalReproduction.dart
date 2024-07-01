@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import './enregistrerPorte.dart';
+import 'package:projetlicence/screens/journals/ajouterPorter.dart';
+import './femelleRabbit.dart';
+import './porteeDetailsScreen.dart';
 
 class JournalReproduction extends StatelessWidget {
   @override
@@ -7,7 +9,26 @@ class JournalReproduction extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text('Reproduction'),
+        title: const Text(
+          'Reproduction',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      body: FemellesListScreen(),
+    );
+  }
+}
+
+class FemellesListScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Liste des Femelles'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -15,20 +36,35 @@ class JournalReproduction extends StatelessWidget {
           },
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ElevatedButton(
-            onPressed: () {
+      body: ListView.builder(
+        itemCount: femellesList.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(femellesList[index].name),
+            subtitle: Text('Née le ${femellesList[index].birthDate.day}/${femellesList[index].birthDate.month}/${femellesList[index].birthDate.year}'),
+            onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => EnregistrerPorteScreen()),
+                MaterialPageRoute(
+                  builder: (context) => PorteeDetailsScreen(femelle: femellesList[index]),
+                ),
               );
             },
-            child: Text('Enregistrer une Portée'),
-          ),
-        ],
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Naviguer vers l'écran d'ajout de portée
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AjouterPorteeScreen(),
+            ),
+          );
+        },
+        backgroundColor: Colors.green,
+        child: Icon(Icons.add),
       ),
     );
   }

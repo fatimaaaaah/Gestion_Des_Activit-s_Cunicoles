@@ -37,21 +37,21 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
             _buildListItem('Tableau de Bord', Icons.dashboard, 0, fontSize: 20),
-            Divider(color: Colors.green, height: 1),
+            Divider(color: Colors.white, height: 1),
             _buildListItem('Alimentation', Icons.food_bank_outlined, 1, fontSize: 20),
-            Divider(color: Colors.green, height: 1),
+            Divider(color: Colors.white, height: 1),
             _buildGroupList(
-              'Sujets',
+              'Lapins',
               [
-                _buildListItem('Gestion Sujets', null, 2, fontSize: 18),
-                _buildListItem('Mise en vente de Sujets', null, 3, fontSize: 18),
-                _buildListItem('Achat de sujets', null, 4, fontSize: 18),
+                _buildListItem('Gestion Lapins', null, 2, fontSize: 18),
+                _buildListItem('Mise en vente de Lapins', null, 3, fontSize: 18),
+                _buildListItem('Achat de Lapins', null, 4, fontSize: 18),
                
               ],
               Icons.newspaper, // icône commune pour le groupe
               groupFontSize: 20,
             ),
-            Divider(color: Colors.green, height: 1),
+            Divider(color: Colors.white, height: 1),
             _buildGroupList(
               'Journals',
               [
@@ -63,11 +63,11 @@ class MyDrawer extends StatelessWidget {
               Icons.book, // icône commune pour le groupe
               groupFontSize: 20,
             ),
-            Divider(color: Colors.green, height: 1),
+            Divider(color: Colors.white, height: 1),
             _buildListItem('Notations', Icons.star, 9, fontSize: 20),
-            Divider(color: Colors.green, height: 1),
+            Divider(color: Colors.white, height: 1),
              const DeconnexionPage(),
-            Divider(color: Colors.green, height: 1),
+            Divider(color: Colors.white, height: 1),
             const ListTile(
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.start,

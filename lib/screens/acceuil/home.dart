@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               IconButton(
                 icon: const Icon(Icons.notifications), // Icône de notification par défaut
                 onPressed: () {
-                  Navigator.pushNamed(context, '/notification_tap');
+                  Navigator.pushNamed(context, '/notifications');
                 },
               ),
               Positioned(

@@ -1,18 +1,45 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: JournalVaccination(),
+    theme: ThemeData(
+      primarySwatch: Colors.green,
+      scaffoldBackgroundColor: Colors.white,
+      textTheme: TextTheme(
+        bodyText1: TextStyle(color: Colors.black),
+        bodyText2: TextStyle(color: Colors.black),
+      ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: Colors.green, // Couleur de l'AppBar en vert
+      ),
+    ),
+  ));
+}
+
+class Rabbit {
+  final String name;
+  final int age;
+  final File? image;
+
+  Rabbit({required this.name, required this.age, this.image});
+}
 
 class JournalVaccination extends StatelessWidget {
   final List<Map<String, dynamic>> _vaccinationHistory = [
     {
-      'rabbitId': 'R001',
+      'rabbit': Rabbit(name: 'Lapin 1', age: 2),
       'treatmentType': 'Vaccination contre la Myxomatose',
-      'dateAdministered': DateTime(2024, 6, 15),
+      'dateAdministered': DateTime(2024, 6, 15, 10, 30), // Exemple avec heure
     },
     {
-      'rabbitId': 'R002',
+      'rabbit': Rabbit(name: 'Lapin 2', age: 1),
       'treatmentType': 'Vaccination contre la VHD',
-      'dateAdministered': DateTime(2024, 6, 20),
+      'dateAdministered': DateTime(2024, 6, 20, 9, 0), // Exemple avec heure
     },
-    // Add more dummy data as needed
+    // Ajoutez plus de données factices au besoin
   ];
 
   @override
@@ -25,14 +52,16 @@ class JournalVaccination extends StatelessWidget {
         itemCount: _vaccinationHistory.length,
         itemBuilder: (context, index) {
           var record = _vaccinationHistory[index];
+          Rabbit rabbit = record['rabbit'];
           return ListTile(
             leading: CircleAvatar(
-              child: Text(record['rabbitId']),
+              backgroundColor: Colors.green, // Fond du CircleAvatar en vert
+              child: Text(rabbit.name[0], style: TextStyle(color: Colors.white)),
             ),
-            title: Text(record['treatmentType']),
-            subtitle: Text('Administée le ${record['dateAdministered'].toString()}'),
+            title: Text(rabbit.name),
+            subtitle: Text('Vaccination contre ${record['treatmentType']}\nAdministérée le ${_formatDate(record['dateAdministered'])}'),
             onTap: () {
-              // Handle tap if needed
+              _showDetailsDialog(context, record);
             },
           );
         },
@@ -44,8 +73,46 @@ class JournalVaccination extends StatelessWidget {
             MaterialPageRoute(builder: (context) => MedicalRecordForm()),
           );
         },
-        child: Icon(Icons.add),
+        backgroundColor: Colors.green, // Fond du bouton en vert
+        child: Icon(Icons.add, color: Colors.white), // Icône blanche
       ),
+    );
+  }
+
+  String _formatDate(DateTime dateTime) {
+    return '${dateTime.day}/${dateTime.month}/${dateTime.year} à ${dateTime.hour}:${dateTime.minute}';
+  }
+
+  void _showDetailsDialog(BuildContext context, Map<String, dynamic> record) {
+    Rabbit rabbit = record['rabbit'];
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Détails de la Vaccination'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Nom du Lapin: ${rabbit.name}'),
+              SizedBox(height: 8),
+              Text('Âge: ${rabbit.age} ans'),
+              SizedBox(height: 8),
+              Text('Type de Traitement: ${record['treatmentType']}'),
+              SizedBox(height: 8),
+              Text('Date d\'administration: ${_formatDate(record['dateAdministered'])}'),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Fermer'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -75,10 +142,10 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'ID du Lapin'),
+                decoration: InputDecoration(labelText: 'Nom du Lapin'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Veuillez entrer l\'ID du Lapin';
+                    return 'Veuillez entrer le nom du Lapin';
                   }
                   return null;
                 },
@@ -100,15 +167,58 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
                 },
               ),
               SizedBox(height: 20.0),
+              TextFormField(
+                readOnly: true,
+                decoration: InputDecoration(
+                  labelText: 'Date de l\'administration',
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.calendar_today),
+                    onPressed: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2101),
+                      );
+                      if (pickedDate != null) {
+                        TimeOfDay? pickedTime = await showTimePicker(
+                          context: context,
+                          initialTime: TimeOfDay.now(),
+                        );
+                        if (pickedTime != null) {
+                          setState(() {
+                            _dateAdministered = DateTime(
+                              pickedDate.year,
+                              pickedDate.month,
+                              pickedDate.day,
+                              pickedTime.hour,
+                              pickedTime.minute,
+                            );
+                          });
+                        }
+                      }
+                    },
+                  ),
+                ),
+                validator: (value) {
+                  if (_dateAdministered == null) {
+                    return 'Veuillez sélectionner une date et une heure';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    // Simulate saving the medical record
                     _saveMedicalRecord();
                     Navigator.pop(context);
                   }
                 },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green, // Fond du bouton en vert
+                ),
                 child: Text('Enregistrer'),
               ),
             ],
@@ -119,13 +229,11 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
   }
 
   void _saveMedicalRecord() {
-    // Simulate saving the medical record to a local list or database
     final newRecord = {
       'rabbitId': _rabbitId,
       'treatmentType': _treatmentType,
-      'dateAdministered': DateTime.now(),
+      'dateAdministered': _dateAdministered,
     };
-    // Handle saving to actual storage if needed
     print('Saved medical record: $newRecord');
   }
 }

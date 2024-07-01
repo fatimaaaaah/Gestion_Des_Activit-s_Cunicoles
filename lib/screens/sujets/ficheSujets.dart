@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../constants/rabbit.dart';
+import '../../constants/rabbit.dart'; // Assurez-vous que le fichier est dans le bon répertoire
 
 class FicheSujets extends StatelessWidget {
   final Rabbit rabbit;
@@ -12,10 +12,9 @@ class FicheSujets extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green, // Fond de l'appBar vert
         title: Text('Fiche de ${rabbit.name}',
-        style: TextStyle(
-         fontWeight: FontWeight.bold,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
           ),
-        
         ),
       ),
       body: Padding(
