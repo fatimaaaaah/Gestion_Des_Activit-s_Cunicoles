@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:projetlicence/screens/acceuil/home.dart';
 import 'package:projetlicence/screens/alimentation/alimentation.dart';
 import 'package:projetlicence/screens/authentification/splashScreen.dart';
@@ -15,7 +18,12 @@ import 'package:projetlicence/screens/notations/notations.dart';
 import 'package:projetlicence/screens/notifications/notifcation_tap.dart';
 import 'package:projetlicence/screens/acceuil/home.dart';
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
