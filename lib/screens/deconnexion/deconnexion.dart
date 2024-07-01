@@ -83,8 +83,8 @@ class _DeconnexionPageState extends State<DeconnexionPage> {
           Text(
             'Déconnexion',
             style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
+              color: Colors.green,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../deconnexion/deconnexion.dart';
+import 'package:projetlicence/screens/deconnexion/deconnexion.dart';
 
 class MyDrawer extends StatelessWidget {
+  final int selectedIndex;
+  final ValueChanged<int> onItemTapped;
+  final VoidCallback onLogoutTapped;
+
   const MyDrawer({
     Key? key,
     required this.selectedIndex,
@@ -10,170 +13,145 @@ class MyDrawer extends StatelessWidget {
     required this.onLogoutTapped,
   }) : super(key: key);
 
-  final int selectedIndex;
-  final Function(int) onItemTapped;
-  final Function() onLogoutTapped;
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.black,
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.white12,
-            ),
-            child: Center(
-              child: Text(
-                'GESTION DES ACTIVITES CUNICOLES',
-                style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+      child: Container(
+        color: Colors.black,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.white12,
               ),
-            ),
-          ),
-          ListTile(
-            title: const Text(
-              'Acceuil',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            leading: const FaIcon(
-              FontAwesomeIcons.home,
-              color: Colors.green,
-              size: 30,
-            ),
-            selected: selectedIndex == 0,
-            onTap: () {
-              onItemTapped(0);
-              Navigator.pop(context);
-            },
-          ),
-          
-          const Divider(color: Colors.white),
-          _buildCategory(
-            context,
-            title: 'Sujets',
-            icon: FontAwesomeIcons.book,
-            children: [
-              _buildSubListItem(context, 'Gestion sujets', 1, onItemTapped),
-              _buildSubListItem(context, 'Fiches sujets', 2, onItemTapped),
-              _buildSubListItem(context, 'Achats sujets', 3, onItemTapped),
-              _buildSubListItem(context, ' Mise en vente de sujets', 4, onItemTapped),
-              _buildSubListItem(context, ' Notation de sujets', 5, onItemTapped),
-              _buildSubListItem(context, ' Notation de sujets', 5, onItemTapped),
-            ],
-          ),
-          const Divider(color: Colors.white),
-          _buildCategory(
-            context,
-            title: 'Journals',
-            icon: FontAwesomeIcons.book,
-            children: [
-              _buildSubListItem(context, 'Journal de reproduction', 1, onItemTapped),
-              _buildSubListItem(context, 'Journal des achats', 2, onItemTapped),
-              _buildSubListItem(context, 'Journal des ventes', 3, onItemTapped),
-              _buildSubListItem(context, 'Journal de vaccination', 4, onItemTapped),
-            ],
-          ),
-        
-          ListTile(
-            title: const Text(
-              'Tableau de bord',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            leading: const FaIcon(
-              FontAwesomeIcons.chartLine,
-              color: Colors.green,
-              size: 30,
-            ),
-            selected: selectedIndex == 6,
-            onTap: () {
-              onItemTapped(6);
-              Navigator.pop(context);
-            },
-          ),
-          const Divider(color: Colors.white),
-          const DeconnexionPage(),
-          const Divider(color: Colors.white),
-          ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  'Version',
+              child: Center(
+                child: Text(
+                  'GESTION DES ACTIVITES CUNICOLES',
                   style: TextStyle(
-                    fontSize: 14,
+                    color: Colors.green,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
                   ),
                 ),
-                SizedBox(width: 8),
-                Spacer(),
-                Text(
-                  '1.0.0',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white,
-                  ),
-                ),
+              ),
+            ),
+            _buildListItem('Tableau de Bord', Icons.dashboard, 0, fontSize: 20),
+            Divider(color: Colors.white, height: 1),
+            _buildListItem('Alimentation', Icons.food_bank_outlined, 1, fontSize: 20),
+            Divider(color: Colors.white, height: 1),
+            _buildGroupList(
+              'Lapins',
+              [
+                _buildListItem('Gestion Lapins', null, 2, fontSize: 18),
+                _buildListItem('Mise en vente de Lapins', null, 3, fontSize: 18),
+                _buildListItem('Achat de Lapins', null, 4, fontSize: 18),
+               
               ],
+              Icons.newspaper, // icône commune pour le groupe
+              groupFontSize: 20,
+            ),
+            Divider(color: Colors.white, height: 1),
+            _buildGroupList(
+              'Journals',
+              [
+                _buildListItem('Journal de Reproduction', null, 5, fontSize: 18),
+                _buildListItem('Journal de Vaccination', null, 6, fontSize: 18),
+                _buildListItem('Journal des Ventes', null, 7, fontSize: 18),
+                _buildListItem('Journal des Achats', null, 8, fontSize: 18),
+              ],
+              Icons.book, // icône commune pour le groupe
+              groupFontSize: 20,
+            ),
+            Divider(color: Colors.white, height: 1),
+            _buildListItem('Notations', Icons.star, 9, fontSize: 20),
+            Divider(color: Colors.white, height: 1),
+             const DeconnexionPage(),
+            Divider(color: Colors.white, height: 1),
+            const ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'Version',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Spacer(),
+                  Text(
+                    '1.0.0',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildListItem(String title, IconData? icon, int index, {bool isLogout = false, double fontSize = 20}) {
+    return ListTile(
+      title: Row(
+        children: [
+          if (icon != null) ...[
+            Icon(
+              icon,
+              color: Colors.green,
+              size: fontSize * 1.5, // Ajustement de la taille de l'icône en fonction de la taille de la police
+            ),
+            SizedBox(width: 16),
+          ],
+          Text(
+            title,
+            style: TextStyle(
+              color: Colors.green,
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ],
       ),
-    );
-  }
-
-  Widget _buildCategory(BuildContext context,
-      {required String title,
-      required IconData icon,
-      required List<Widget> children}) {
-    return ExpansionTile(
-      title: Text(
-        title,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      leading: FaIcon(
-        icon,
-        color: Colors.green,
-        size: 30,
-      ),
-      children: children,
-    );
-  }
-
-  Widget _buildSubListItem(
-      BuildContext context, String title, int index, Function(int) onItemTapped) {
-    return ListTile(
-      title: Text(
-        title,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      selected: selectedIndex == index,
       onTap: () {
-        onItemTapped(index);
-        Navigator.pop(context);
+        if (!isLogout) {
+          onItemTapped(index);
+        } else {
+          onLogoutTapped();
+        }
       },
+    );
+  }
+
+  Widget _buildGroupList(String groupName, List<Widget> items, IconData groupIcon, {double groupFontSize = 20}) {
+    return ExpansionTile(
+      title: Row(
+        children: [
+          Icon(
+            groupIcon,
+            color: Colors.green,
+            size: groupFontSize * 1.5, // Ajustement de la taille de l'icône du groupe
+          ),
+          SizedBox(width: 8),
+          Text(
+            groupName,
+            style: TextStyle(
+              color: Colors.green,
+              fontSize: groupFontSize,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+      children: items,
     );
   }
 }

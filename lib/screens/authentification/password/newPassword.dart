@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import '../login.dart';
 
 class NewPasswordPage extends StatelessWidget {
+  const NewPasswordPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Nouveau mot de passe",
           style: TextStyle(
             color: Colors.white,
@@ -20,37 +22,37 @@ class NewPasswordPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Veuillez entrer votre nouveau mot de passe.",
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 20),
-            PasswordField(
+            const SizedBox(height: 20),
+            const PasswordField(
               labelText: "Nouveau mot de passe",
             ),
-            SizedBox(height: 20),
-            PasswordField(
+            const SizedBox(height: 20),
+            const PasswordField(
               labelText: "Confirmer le nouveau mot de passe",
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.6, // Largeur réduite du bouton
-                height: 50, // Hauteur du bouton
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.6,
+                height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green, // Couleur du bouton en vert
+                    primary: Colors.green,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12), // Radius sur le bouton
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     "Enregistrer",
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
@@ -89,13 +91,13 @@ class _PasswordFieldState extends State<PasswordField> {
       children: <Widget>[
         Text(
           widget.labelText,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,
             color: Colors.black87,
           ),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         TextFormField(
           obscureText: _obscureText,
           decoration: InputDecoration(
@@ -103,13 +105,13 @@ class _PasswordFieldState extends State<PasswordField> {
               icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off),
               onPressed: _toggleVisibility,
             ),
-            contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+            contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black),
+              borderSide: const BorderSide(color: Colors.black),
               borderRadius: BorderRadius.circular(12),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black),
+              borderSide: const BorderSide(color: Colors.black),
               borderRadius: BorderRadius.circular(12),
             ),
           ),

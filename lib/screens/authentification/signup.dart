@@ -7,23 +7,22 @@ import './ferme.dart';
 class SignupPage extends StatefulWidget {
   @override
   _SignupPageState createState() => _SignupPageState();
-}
-
-class _SignupPageState extends State<SignupPage> {
+  class _SignupPageState extends State<SignupPage> {
   final _formKey = GlobalKey<FormState>();
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
-
   final _nameController = TextEditingController();
   final _surnameController = TextEditingController();
   final _dobController = TextEditingController();
-  final _locationController = TextEditingController();
+  final _locationController = TextEditingController
   final _phoneController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
   String? _selectedGender;
+  }
+
 
   @override
   Widget build(BuildContext context) {

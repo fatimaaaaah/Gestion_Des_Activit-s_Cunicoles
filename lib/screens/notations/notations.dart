@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class BreedingJournalPage extends StatelessWidget {
+class Notations extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Journal de reproduction'),
+        title: Text('Notation de sujets et d’autres éleveurs/vendeurs'),
       ),
       body: Center(
-        child: Text('Contenu du journal de reproduction'),
+        child: Text('Contenu de la page de notation'),
       ),
     );
   }

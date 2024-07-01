@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import './screens/authentification/splashScreen.dart';
-import './screens/authentification/home_page.dart';
-import './screens/sujets/subjectFilePage.dart';
-import './screens/sujets/sellSubjectsPage.dart';
-import './screens/sujets/buySubjectsPage.dart';
-import './screens/journals/breedingJournalPage.dart';
-import './screens/journals/purchaseJournalPage.dart';
-import './screens/journals/salesJournalPage.dart';
-import './screens/notations/ratingPage.dart';
-import './screens/notifications/notificationPage.dart';
-import './screens/setting/settingsPage.dart';
-import './screens/dashordComptable/simpleDashboardPage.dart';
-import './screens/drawer/drawer_screen.dart';
-import './screens/profil/profil.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:projetlicence/screens/acceuil/home.dart';
+import 'package:projetlicence/screens/alimentation/alimentation.dart';
+import 'package:projetlicence/screens/authentification/splashScreen.dart';
+import 'package:projetlicence/screens/journals/journalAchats.dart';
+import 'package:projetlicence/screens/profil/profil.dart';
+import 'package:projetlicence/screens/deconnexion/deconnexion.dart';
+import 'package:projetlicence/screens/sujets/gestionsSubject.dart';
+import 'package:projetlicence/screens/sujets/ventesSujets.dart';
+import 'package:projetlicence/screens/sujets/achatsSujets.dart';
+import 'package:projetlicence/screens/journals/journalReproduction.dart';
+import 'package:projetlicence/screens/journals/journalVaccination.dart';
+import 'package:projetlicence/screens/journals/journalVente.dart';
+import 'package:projetlicence/screens/notations/notations.dart';
+import 'package:projetlicence/screens/notifications/notifcation_tap.dart';
+import 'package:projetlicence/screens/acceuil/home.dart';
 
 
 void main() async {
@@ -30,29 +31,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Gestion des activités cunicoles',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-      ),
-      initialRoute: '/', // Route initiale, si nécessaire
+      initialRoute: '/',
       routes: {
-        '/': (context) => SplashScreen(), // Route initiale, si nécessaire
-        '/home': (context) => HomePage(),
-        '/subjectFile': (context) => SubjectFilePage(),
-        '/sellSubjects': (context) => SellSubjectsPage(),
-        '/buySubjects': (context) => BuySubjectsPage(),
-        '/breedingJournal': (context) => BreedingJournalPage(),
-        '/purchaseJournal': (context) => PurchaseJournalPage(),
-        '/salesJournal': (context) => SalesJournalPage(),
-        '/rating': (context) => RatingPage(),
-        '/notification': (context) => NotificationPage(),
-        '/settings': (context) => SettingsPage(),
-        '/simpleDashboard': (context) => SimpleDashboardPage(),
-        '/profile': (context) => ProfileScreen(),
-        '/deconexion': (context) => ProfileScreen(),
+        '/': (context) => SplashScreen(),
+        '/home': (context) => const HomePage(),
+        '/alimentation': (context) =>  AlimentationPage(),
+        '/gestion_sujets': (context) => GestionsSujets(),
+        '/ventes_sujets': (context) => VentesSujets(),
+        '/achats_sujets': (context) => AchatsSujets(),
+        '/journal_reproduction': (context) => JournalReproduction(),
+        '/journal_vaccination': (context) => JournalVaccination(),
+        '/journal_vente': (context) => JournalVente(),
+        '/journal_achat': (context) => JournalAchats(),
+        '/notations': (context) => Notations(),
+        '/notifications': (context) => NotitcationTap(),
+        '/profil': (context) => ProfileScreen(),
+        '/deconnexion': (context) => const DeconnexionPage(),
       },
+
     );
   }
 }
-

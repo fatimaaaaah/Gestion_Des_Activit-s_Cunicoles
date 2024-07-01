@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class BuySubjectsPage extends StatelessWidget {
+class JournalVente extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Achat de sujets'),
+        title: Text('Journal des ventes'),
       ),
       body: Center(
-        child: Text('Contenu de la page d\'achat des sujets'),
+        child: Text('Contenu du journal des ventes'),
       ),
     );
   }
