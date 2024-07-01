@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './ficheSujets.dart';
+import './FicheSujets.dart'; // Importez correctement votre fichier FicheSujets.dart ici
 import '../../constants/rabbit.dart';
 
 class GestionsSujets extends StatefulWidget {
@@ -21,7 +21,7 @@ class _GestionsSujetsState extends State<GestionsSujets> {
     Rabbit(name: "Lapin 10", age: 6, weight: 2.5),
     Rabbit(name: "Lapin 11", age: 8, weight: 3.0),
     Rabbit(name: "Lapin 12", age: 4, weight: 2.8),
-    // Ajoutez plus de lapins ici
+    // Ajoutez plus de lapins ici si nécessaire
   ];
 
   List<Rabbit> filteredRabbits = [];
@@ -106,18 +106,19 @@ class _GestionsSujetsState extends State<GestionsSujets> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   // Naviguer vers la page de fiche des sujets
-                                  Navigator.pushNamed(
+                                  Navigator.push(
                                     context,
-                                    '/fiche_sujets',
-                                    arguments: filteredRabbits[index],
+                                    MaterialPageRoute(
+                                      builder: (context) => FicheSujets(rabbit: filteredRabbits[index]),
+                                    ),
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.green, // Bouton "Voir Plus" vert
                                 ),
-                                child: Text('Voir Plus',
-                                style: TextStyle(fontSize: 15.0, color: Colors.white),
-                                
+                                child: Text(
+                                  'Voir Plus',
+                                  style: TextStyle(fontSize: 15.0, color: Colors.white),
                                 ),
                               ),
                             ),

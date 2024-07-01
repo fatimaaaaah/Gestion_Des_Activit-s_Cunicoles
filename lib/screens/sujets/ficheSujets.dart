@@ -11,7 +11,12 @@ class FicheSujets extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green, // Fond de l'appBar vert
-        title: Text('Fiche de ${rabbit.name}'),
+        title: Text('Fiche de ${rabbit.name}',
+        style: TextStyle(
+         fontWeight: FontWeight.bold,
+          ),
+        
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),

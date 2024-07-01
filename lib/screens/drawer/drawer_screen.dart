@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projetlicence/screens/deconnexion/deconnexion.dart';
 
 class MyDrawer extends StatelessWidget {
   final int selectedIndex;
@@ -35,14 +36,17 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            _buildListItem('Dashboard', Icons.dashboard, 0),
+            _buildListItem('Tableau de Bord', Icons.dashboard, 0, fontSize: 20),
+            Divider(color: Colors.green, height: 1),
+            _buildListItem('Alimentation', Icons.food_bank_outlined, 1, fontSize: 20),
             Divider(color: Colors.green, height: 1),
             _buildGroupList(
               'Sujets',
               [
-                _buildListItem('Gestion Sujets', null, 1, fontSize: 16),
-                _buildListItem('Sell Subjects', null, 2, fontSize: 16),
-                _buildListItem('Buy Subjects', null, 6, fontSize: 16),
+                _buildListItem('Gestion Sujets', null, 2, fontSize: 18),
+                _buildListItem('Mise en vente de Sujets', null, 3, fontSize: 18),
+                _buildListItem('Achat de sujets', null, 4, fontSize: 18),
+               
               ],
               Icons.newspaper, // icône commune pour le groupe
               groupFontSize: 20,
@@ -51,17 +55,18 @@ class MyDrawer extends StatelessWidget {
             _buildGroupList(
               'Journals',
               [
-                _buildListItem('Breeding Journal', null, 5, fontSize: 16),
-                _buildListItem('Purchase Journal', null, 3, fontSize: 16),
-                _buildListItem('Sales Journal', null, 4, fontSize: 16),
+                _buildListItem('Journal de Reproduction', null, 5, fontSize: 18),
+                _buildListItem('Journal de Vaccination', null, 6, fontSize: 18),
+                _buildListItem('Journal des Ventes', null, 7, fontSize: 18),
+                _buildListItem('Journal des Achats', null, 8, fontSize: 18),
               ],
               Icons.book, // icône commune pour le groupe
               groupFontSize: 20,
             ),
             Divider(color: Colors.green, height: 1),
-            _buildListItem('Rating Page', Icons.star, 7),
+            _buildListItem('Notations', Icons.star, 9, fontSize: 20),
             Divider(color: Colors.green, height: 1),
-            _buildListItem('Déconnexion', Icons.exit_to_app, -1, isLogout: true),
+             const DeconnexionPage(),
             Divider(color: Colors.green, height: 1),
             const ListTile(
               title: Row(
@@ -102,7 +107,7 @@ class MyDrawer extends StatelessWidget {
             Icon(
               icon,
               color: Colors.green,
-              size: 20,
+              size: fontSize * 1.5, // Ajustement de la taille de l'icône en fonction de la taille de la police
             ),
             SizedBox(width: 16),
           ],
@@ -133,7 +138,7 @@ class MyDrawer extends StatelessWidget {
           Icon(
             groupIcon,
             color: Colors.green,
-            size: 30,
+            size: groupFontSize * 1.5, // Ajustement de la taille de l'icône du groupe
           ),
           SizedBox(width: 8),
           Text(

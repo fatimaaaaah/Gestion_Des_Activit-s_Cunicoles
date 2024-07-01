@@ -7,12 +7,12 @@ import '../profil/profil.dart';
 import '../deconnexion/deconnexion.dart';
 import '../sujets/ficheSujets.dart';
 import '../sujets/gestionsSubject.dart';
-import '../sujets/sellSubjectsPage.dart';
-import '../sujets/buySubjectsPage.dart';
-import '../journals/breedingJournalPage.dart';
-import '../journals/purchaseJournalPage.dart';
-import '../journals/salesJournalPage.dart';
-import '../notations/ratingPage.dart';
+import '../sujets/ventesSujets.dart';
+import '../sujets/achatsSujets.dart';
+import '../journals/journalReproduction.dart';
+import '../journals/journalVaccination.dart';
+import '../journals/journalVente.dart';
+import '../notations/notations.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -108,29 +108,38 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             case 0:
               Navigator.pushNamed(context, '/home'); // Accueil
               break;
-            case 1:
-              Navigator.pushNamed(context, '/gestion_sujets'); // Gestion Sujets
+              case 1:
+              Navigator.pushNamed(context, '/alimentation'); // Gestion Sujets
               break;
             case 2:
-              Navigator.pushNamed(context, '/sell_subjects'); // Sell Subjects
+              Navigator.pushNamed(context, '/gestion_sujets'); // Gestion Sujets
               break;
             case 3:
-              Navigator.pushNamed(context, '/purchase_journal'); // Purchase Journal
+              Navigator.pushNamed(context, '/ventes_sujets'); // Sell Subjects
               break;
             case 4:
-              Navigator.pushNamed(context, '/sales_journal'); // Sales Journal
+              Navigator.pushNamed(context, '/achats_sujets'); // Sell Subjects
               break;
             case 5:
-              Navigator.pushNamed(context, '/notification_tap'); // Notification Tap
+              Navigator.pushNamed(context, '/journal_reproduction'); // Purchase Journal
               break;
             case 6:
-              Navigator.pushNamed(context, '/breeding_journal'); // Breeding Journal
+              Navigator.pushNamed(context, '/journal_vaccination'); // Sales Journal
               break;
             case 7:
-              Navigator.pushNamed(context, '/buy_subjects'); // Buy Subjects
+              Navigator.pushNamed(context, '/journal_vente'); // Notification Tap
               break;
-            case 8:
-              Navigator.pushNamed(context, '/rating_page'); // Rating Page
+             case 8:
+              Navigator.pushNamed(context, '/journal_achat'); // Notification Tap
+              break;
+            case 9:
+              Navigator.pushNamed(context, '/notations'); // Breeding Journal
+              break;
+            case 10:
+              Navigator.pushNamed(context, '/notifications'); // Buy Subjects
+              break;
+            case 11:
+              Navigator.pushNamed(context, '/profil'); // Rating Page
               break;
             default:
               break;
