@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:projetlicence/screens/acceuil/home.dart';
+import 'package:projetlicence/screens/authentification/splashScreen.dart';
+import 'package:projetlicence/screens/profil/profil.dart';
 import 'package:projetlicence/screens/deconnexion/deconnexion.dart';
+import 'package:projetlicence/screens/sujets/ficheSujets.dart';
+import 'package:projetlicence/screens/sujets/gestionsSubject.dart';
 import 'package:projetlicence/screens/sujets/sellSubjectsPage.dart';
-import './screens/authentification/splashScreen.dart';
-import './screens/authentification/home_page.dart';
-import './screens/sujets/ficheSujets.dart';
-import './screens/sujets/gestionsSubject.dart';
-import './screens/sujets/buySubjectsPage.dart';
-import './screens/journals/breedingJournalPage.dart';
-import './screens/journals/purchaseJournalPage.dart';
-import './screens/journals/salesJournalPage.dart';
-import './screens/notations/ratingPage.dart';
-import './screens/notifications/notifcation_tap.dart';
-import './constants/rabbit.dart'; // Import Rabbit class
+import 'package:projetlicence/screens/sujets/buySubjectsPage.dart';
+import 'package:projetlicence/screens/journals/breedingJournalPage.dart';
+import 'package:projetlicence/screens/journals/purchaseJournalPage.dart';
+import 'package:projetlicence/screens/journals/salesJournalPage.dart';
+import 'package:projetlicence/screens/notations/ratingPage.dart';
+import 'package:projetlicence/screens/notifications/notifcation_tap.dart';
+import 'package:projetlicence/screens/acceuil/home.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -20,22 +22,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Gestion des activités cunicoles',
-      initialRoute: '/', // Route initiale, si nécessaire
-      onGenerateRoute: (settings) {
-        if (settings.name == '/fiche_sujets') {
-          final rabbit = settings.arguments as Rabbit;
-          return MaterialPageRoute(
-            builder: (context) => FicheSujets(rabbit: rabbit),
-          );
-        }
-        // Define other routes similarly if needed
-        return null;
-      },
+      initialRoute: '/',
       routes: {
         '/': (context) => SplashScreen(),
-        '/home': (context) => HomePage(),
+        '/home': (context) => const HomePage(),
         '/gestion_sujets': (context) => GestionsSujets(),
         '/sell_subjects': (context) => SellSubjectsPage(),
         '/purchase_journal': (context) => PurchaseJournalPage(),
@@ -44,8 +35,10 @@ class MyApp extends StatelessWidget {
         '/breeding_journal': (context) => BreedingJournalPage(),
         '/buy_subjects': (context) => BuySubjectsPage(),
         '/rating_page': (context) => RatingPage(),
-        '/deconnexion': (context) => const DeconnexionPage(),
+        '/profil': (context) => ProfileScreen(),
+        '/deconnexion': (context) => DeconnexionPage(),
       },
+
     );
   }
 }

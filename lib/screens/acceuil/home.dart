@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:projetlicence/screens/profil/profil.dart';
 import '../drawer/drawer_screen.dart';
 import '../notifications/notifcation_tap.dart';
-import '../profil/profil.dart'; 
+import '../profil/profil.dart';
 import '../deconnexion/deconnexion.dart';
 import '../sujets/ficheSujets.dart';
 import '../sujets/gestionsSubject.dart';
@@ -62,10 +62,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               IconButton(
                 icon: const Icon(Icons.notifications), // Icône de notification par défaut
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => NotitcationTap()),
-                  );
+                  Navigator.pushNamed(context, '/notification_tap');
                 },
               ),
               Positioned(
@@ -98,10 +95,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             child: IconButton(
               icon: const Icon(FontAwesomeIcons.user), // Icône utilisateur de FontAwesome
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfileScreen()), // Navigue vers la page de profil
-                );
+                Navigator.pushNamed(context, '/profil');
               },
             ),
           ),
@@ -110,39 +104,38 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       drawer: MyDrawer(
         selectedIndex: 0, // Mettez à jour selectedIndex selon l'état de votre application
         onItemTapped: (index) {
-  switch (index) {
-    case 0:
-      Navigator.pushNamed(context, '/'); // Accueil
-      break;
-    case 1:
-      Navigator.pushNamed(context, '/gestion_sujets'); // Gestion Sujets
-      break;
-    case 2:
-      Navigator.pushNamed(context, '/sell_subjects'); // Sell Subjects
-      break;
-    case 3:
-      Navigator.pushNamed(context, '/purchase_journal'); // Purchase Journal
-      break;
-    case 4:
-      Navigator.pushNamed(context, '/sales_journal'); // Sales Journal
-      break;
-    case 5:
-      Navigator.pushNamed(context, '/notification_tap'); // Notification Tap
-      break;
-    case 6:
-      Navigator.pushNamed(context, '/breeding_journal'); // Breeding Journal
-      break;
-    case 7:
-      Navigator.pushNamed(context, '/buy_subjects'); // Buy Subjects
-      break;
-    case 8:
-      Navigator.pushNamed(context, '/rating_page'); // Rating Page
-      break;
-    default:
-      break;
-  }
-},
-
+          switch (index) {
+            case 0:
+              Navigator.pushNamed(context, '/home'); // Accueil
+              break;
+            case 1:
+              Navigator.pushNamed(context, '/gestion_sujets'); // Gestion Sujets
+              break;
+            case 2:
+              Navigator.pushNamed(context, '/sell_subjects'); // Sell Subjects
+              break;
+            case 3:
+              Navigator.pushNamed(context, '/purchase_journal'); // Purchase Journal
+              break;
+            case 4:
+              Navigator.pushNamed(context, '/sales_journal'); // Sales Journal
+              break;
+            case 5:
+              Navigator.pushNamed(context, '/notification_tap'); // Notification Tap
+              break;
+            case 6:
+              Navigator.pushNamed(context, '/breeding_journal'); // Breeding Journal
+              break;
+            case 7:
+              Navigator.pushNamed(context, '/buy_subjects'); // Buy Subjects
+              break;
+            case 8:
+              Navigator.pushNamed(context, '/rating_page'); // Rating Page
+              break;
+            default:
+              break;
+          }
+        },
         onLogoutTapped: () {
           Navigator.pushNamed(context, '/deconnexion'); // Déconnexion
         },
