@@ -8,11 +8,11 @@ void main() {
     theme: ThemeData(
       primarySwatch: Colors.green,
       scaffoldBackgroundColor: Colors.green,
-      textTheme: TextTheme(
-        bodyText1: TextStyle(color: Colors.black),
-        bodyText2: TextStyle(color: Colors.black),
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(color: Colors.black),
+        bodyMedium: TextStyle(color: Colors.black),
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: Colors.green,
       ),
     ),
@@ -44,8 +44,9 @@ class _VentesSujetsState extends State<VentesSujets> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text('Mettre un Lapin en Vente',
-        style: TextStyle(fontWeight: FontWeight.bold),
+        title: const Text(
+          'Mettre un Lapin en Vente',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: Column(
@@ -57,12 +58,16 @@ class _VentesSujetsState extends State<VentesSujets> {
                 var rabbit = rabbits[index];
                 return ListTile(
                   leading: CircleAvatar(
-                    backgroundImage: rabbit.image != null ? FileImage(rabbit.image!) : null,
+                    backgroundImage:
+                        rabbit.image != null ? FileImage(rabbit.image!) : null,
                     child: rabbit.image == null ? Text('${index + 1}') : null,
                   ),
-                  title: Text(rabbit.name, style: TextStyle(color: Colors.black)),
-                  subtitle: Text('Âge: ${rabbit.age} ans', style: TextStyle(color: Colors.black)),
-                  trailing: Icon(Icons.arrow_forward, color: Colors.black),
+                  title: Text(rabbit.name,
+                      style: const TextStyle(color: Colors.black)),
+                  subtitle: Text('Âge: ${rabbit.age} ans',
+                      style: const TextStyle(color: Colors.black)),
+                  trailing:
+                      const Icon(Icons.arrow_forward, color: Colors.black),
                   onTap: () {
                     _navigateToSellRabbit(context, rabbit);
                   },
@@ -71,17 +76,20 @@ class _VentesSujetsState extends State<VentesSujets> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                onPressed: () {
-                  _navigateToAddRabbit(context);
-                },
-                 backgroundColor: Colors.green,
-                child: const Icon(Icons.add,color: Colors.black, ),
-            ),)
-          ),
+              padding: const EdgeInsets.all(16.0),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: FloatingActionButton(
+                  onPressed: () {
+                    _navigateToAddRabbit(context);
+                  },
+                  backgroundColor: Colors.green,
+                  child: const Icon(
+                    Icons.add,
+                    color: Colors.black,
+                  ),
+                ),
+              )),
         ],
       ),
     );
@@ -106,9 +114,7 @@ class _VentesSujetsState extends State<VentesSujets> {
       MaterialPageRoute(builder: (context) => SellRabbitScreen(rabbit: rabbit)),
     );
 
-    if (result != null) {
-    
-    }
+    if (result != null) {}
   }
 }
 
@@ -136,13 +142,15 @@ class _AddRabbitScreenState extends State<AddRabbitScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: const Text('Ajouter un nouveau lapin',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),),
+        title: const Text(
+          'Ajouter un nouveau lapin',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -151,48 +159,50 @@ class _AddRabbitScreenState extends State<AddRabbitScreen> {
                 borderRadius: BorderRadius.circular(10.0),
                 color: Colors.grey[200],
               ),
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: TextField(
                 controller: _nameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Nom du lapin',
                   labelStyle: TextStyle(color: Colors.black),
                   border: InputBorder.none,
                 ),
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
             ),
-            SizedBox(height: 12.0),
+            const SizedBox(height: 12.0),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
                 color: Colors.grey[200],
               ),
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: TextField(
                 controller: _ageController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Âge (ans)',
                   labelStyle: TextStyle(color: Colors.black),
                   border: InputBorder.none,
                 ),
                 keyboardType: TextInputType.number,
-                style: TextStyle(color: Colors.green),
+                style: const TextStyle(color: Colors.green),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             _image == null
-                ? Text('Aucune image sélectionnée.', style: TextStyle(color: Colors.black))
+                ? const Text('Aucune image sélectionnée.',
+                    style: TextStyle(color: Colors.black))
                 : Image.file(_image!),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
               ),
               onPressed: _pickImage,
-              child: Text('Choisir une image',
-              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
+              child: const Text('Choisir une image',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold)),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
@@ -200,8 +210,9 @@ class _AddRabbitScreenState extends State<AddRabbitScreen> {
               onPressed: () {
                 _saveNewRabbit(context);
               },
-              child: Text('Enregistrer',
-              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
+              child: const Text('Enregistrer',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold)),
             ),
           ],
         ),
@@ -215,7 +226,8 @@ class _AddRabbitScreenState extends State<AddRabbitScreen> {
 
     if (name.isEmpty || age <= 0 || _image == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Veuillez remplir tous les champs correctement')),
+        const SnackBar(
+            content: Text('Veuillez remplir tous les champs correctement')),
       );
       return;
     }
@@ -249,46 +261,51 @@ class _SellRabbitScreenState extends State<SellRabbitScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mettre en vente ${widget.rabbit.name}',
-        style: TextStyle(fontWeight: FontWeight.bold),
+        title: Text(
+          'Mettre en vente ${widget.rabbit.name}',
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Nom: ${widget.rabbit.name}', style: TextStyle(color: Colors.black)),
-            Text('Âge: ${widget.rabbit.age} ans', style: TextStyle(color: Colors.black)),
-            widget.rabbit.image != null ? Image.file(widget.rabbit.image!) : Container(),
-            SizedBox(height: 12.0),
+            Text('Nom: ${widget.rabbit.name}',
+                style: const TextStyle(color: Colors.black)),
+            Text('Âge: ${widget.rabbit.age} ans',
+                style: const TextStyle(color: Colors.black)),
+            widget.rabbit.image != null
+                ? Image.file(widget.rabbit.image!)
+                : Container(),
+            const SizedBox(height: 12.0),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
                 color: Colors.grey[100],
               ),
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: TextField(
                 controller: _priceController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Prix (CFA)',
                   labelStyle: TextStyle(color: Colors.black),
                   border: InputBorder.none,
                 ),
                 keyboardType: TextInputType.number,
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
             ),
-            SizedBox(height: 12.0),
+            const SizedBox(height: 12.0),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
                 color: Colors.grey[100],
               ),
-              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: TextField(
                 controller: _dateController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Date de mise en vente',
                   labelStyle: TextStyle(color: Colors.black),
                   border: InputBorder.none,
@@ -301,22 +318,26 @@ class _SellRabbitScreenState extends State<SellRabbitScreen> {
                     lastDate: DateTime(2101),
                   );
                   if (pickedDate != null) {
-                    _dateController.text = '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
+                    _dateController.text =
+                        '${pickedDate.day}/${pickedDate.month}/${pickedDate.year}';
                   }
                 },
-                style: TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                backgroundColor: Colors.green,
               ),
               onPressed: () {
                 _sellRabbit(context);
               },
-              child: Text('Mettre en vente',
-              style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+              child: const Text(
+                'Mettre en vente',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),
@@ -330,7 +351,8 @@ class _SellRabbitScreenState extends State<SellRabbitScreen> {
 
     if (price <= 0 || date.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Veuillez remplir tous les champs correctement')),
+        const SnackBar(
+            content: Text('Veuillez remplir tous les champs correctement')),
       );
       return;
     }

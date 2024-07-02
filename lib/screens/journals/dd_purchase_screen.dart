@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projetlicence/screens/journals/journalAchats.dart';
 
-
 class AddPurchaseScreen extends StatefulWidget {
   @override
   _AddPurchaseScreenState createState() => _AddPurchaseScreenState();
@@ -46,7 +45,7 @@ class _AddPurchaseScreenState extends State<AddPurchaseScreen> {
             Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
+                  backgroundColor: Colors.green,
                 ),
                 onPressed: () {
                   _saveNewPurchase(context);
@@ -66,14 +65,23 @@ class _AddPurchaseScreenState extends State<AddPurchaseScreen> {
     String category = _categoryController.text.trim();
     int quantity = int.tryParse(_quantityController.text.trim()) ?? 0;
 
-    if (productName.isEmpty || price <= 0 || category.isEmpty || quantity <= 0) {
+    if (productName.isEmpty ||
+        price <= 0 ||
+        category.isEmpty ||
+        quantity <= 0) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Veuillez remplir tous les champs correctement')),
+        SnackBar(
+            content: Text('Veuillez remplir tous les champs correctement')),
       );
       return;
     }
 
-    Purchase newPurchase = Purchase(productName: productName, price: price, date: DateTime.now(), category: category, quantity: quantity);
+    Purchase newPurchase = Purchase(
+        productName: productName,
+        price: price,
+        date: DateTime.now(),
+        category: category,
+        quantity: quantity);
     Navigator.pop(context, newPurchase);
   }
 

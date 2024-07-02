@@ -47,19 +47,23 @@ class _AlimentationPageState extends State<AlimentationPage> {
 
   void _trackDailyConsumption() {
     final String rabbitId = _rabbitIdController.text;
-    final int dailyConsumption = int.tryParse(_dailyConsumptionController.text) ?? 0;
+    final int dailyConsumption =
+        int.tryParse(_dailyConsumptionController.text) ?? 0;
 
     if (rabbitId.isNotEmpty && dailyConsumption > 0) {
-
       _rabbitIdController.clear();
       _dailyConsumptionController.clear();
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Consommation journalière enregistrée pour le lapin $rabbitId')),
+        SnackBar(
+            content: Text(
+                'Consommation journalière enregistrée pour le lapin $rabbitId')),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Veuillez saisir un identifiant de lapin valide et une quantité de consommation.')),
+        SnackBar(
+            content: Text(
+                'Veuillez saisir un identifiant de lapin valide et une quantité de consommation.')),
       );
     }
   }
@@ -167,11 +171,13 @@ class _AlimentationPageState extends State<AlimentationPage> {
             children: <Widget>[
               TextField(
                 controller: _rabbitIdController,
-                decoration: const InputDecoration(labelText: 'Identifiant du Lapin'),
+                decoration:
+                    const InputDecoration(labelText: 'Identifiant du Lapin'),
               ),
               TextField(
                 controller: _dailyConsumptionController,
-                decoration: const InputDecoration(labelText: 'Quantité Consommée (kg)'),
+                decoration:
+                    const InputDecoration(labelText: 'Quantité Consommée (kg)'),
                 keyboardType: TextInputType.number,
               ),
               SizedBox(height: 10),
@@ -179,7 +185,7 @@ class _AlimentationPageState extends State<AlimentationPage> {
                 onPressed: _trackDailyConsumption,
                 child: const Text('Enregistrer la Consommation'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
+                  backgroundColor: Colors.green,
                 ),
               ),
             ],
@@ -200,7 +206,8 @@ class _AlimentationPageState extends State<AlimentationPage> {
               children: <Widget>[
                 TextField(
                   controller: _foodNameController,
-                  decoration: const InputDecoration(labelText: 'Nom de l\'aliment'),
+                  decoration:
+                      const InputDecoration(labelText: 'Nom de l\'aliment'),
                 ),
                 TextField(
                   controller: _foodQuantityController,
@@ -239,10 +246,12 @@ class _AlimentationPageState extends State<AlimentationPage> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Quantité disponible : ${_foodStock[index]['quantity']} kg'),
+                Text(
+                    'Quantité disponible : ${_foodStock[index]['quantity']} kg'),
                 TextField(
                   controller: _consumeQuantityController,
-                  decoration: const InputDecoration(labelText: 'Quantité à Consommer (kg)'),
+                  decoration: const InputDecoration(
+                      labelText: 'Quantité à Consommer (kg)'),
                   keyboardType: TextInputType.number,
                 ),
               ],

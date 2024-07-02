@@ -8,11 +8,11 @@ void main() {
     theme: ThemeData(
       primarySwatch: Colors.green,
       scaffoldBackgroundColor: Colors.white,
-      textTheme: TextTheme(
-        bodyText1: TextStyle(color: Colors.black),
-        bodyText2: TextStyle(color: Colors.black),
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(color: Colors.black),
+        bodyMedium: TextStyle(color: Colors.black),
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: Colors.green, // Couleur de l'AppBar en vert
       ),
     ),
@@ -46,7 +46,7 @@ class JournalVaccination extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Journal des Vaccinations'),
+        title: const Text('Journal des Vaccinations'),
       ),
       body: ListView.builder(
         itemCount: _vaccinationHistory.length,
@@ -56,10 +56,12 @@ class JournalVaccination extends StatelessWidget {
           return ListTile(
             leading: CircleAvatar(
               backgroundColor: Colors.green, // Fond du CircleAvatar en vert
-              child: Text(rabbit.name[0], style: TextStyle(color: Colors.white)),
+              child: Text(rabbit.name[0],
+                  style: const TextStyle(color: Colors.white)),
             ),
             title: Text(rabbit.name),
-            subtitle: Text('Vaccination contre ${record['treatmentType']}\nAdministérée le ${_formatDate(record['dateAdministered'])}'),
+            subtitle: Text(
+                'Vaccination contre ${record['treatmentType']}\nAdministérée le ${_formatDate(record['dateAdministered'])}'),
             onTap: () {
               _showDetailsDialog(context, record);
             },
@@ -74,7 +76,7 @@ class JournalVaccination extends StatelessWidget {
           );
         },
         backgroundColor: Colors.green, // Fond du bouton en vert
-        child: Icon(Icons.add, color: Colors.white), // Icône blanche
+        child: const Icon(Icons.add, color: Colors.white), // Icône blanche
       ),
     );
   }
@@ -89,23 +91,24 @@ class JournalVaccination extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Détails de la Vaccination'),
+          title: const Text('Détails de la Vaccination'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Nom du Lapin: ${rabbit.name}'),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text('Âge: ${rabbit.age} ans'),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text('Type de Traitement: ${record['treatmentType']}'),
-              SizedBox(height: 8),
-              Text('Date d\'administration: ${_formatDate(record['dateAdministered'])}'),
+              const SizedBox(height: 8),
+              Text(
+                  'Date d\'administration: ${_formatDate(record['dateAdministered'])}'),
             ],
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Fermer'),
+              child: const Text('Fermer'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -132,17 +135,17 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nouvelle Fiche Médicale'),
+        title: const Text('Nouvelle Fiche Médicale'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'Nom du Lapin'),
+                decoration: const InputDecoration(labelText: 'Nom du Lapin'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Veuillez entrer le nom du Lapin';
@@ -153,9 +156,10 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
                   _rabbitId = value!;
                 },
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Type de Traitement'),
+                decoration:
+                    const InputDecoration(labelText: 'Type de Traitement'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Veuillez entrer le type de traitement';
@@ -166,13 +170,13 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
                   _treatmentType = value!;
                 },
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               TextFormField(
                 readOnly: true,
                 decoration: InputDecoration(
                   labelText: 'Date de l\'administration',
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.calendar_today),
+                    icon: const Icon(Icons.calendar_today),
                     onPressed: () async {
                       DateTime? pickedDate = await showDatePicker(
                         context: context,
@@ -207,7 +211,7 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -217,9 +221,9 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green, // Fond du bouton en vert
+                  backgroundColor: Colors.green, // Fond du bouton en vert
                 ),
-                child: Text('Enregistrer'),
+                child: const Text('Enregistrer'),
               ),
             ],
           ),

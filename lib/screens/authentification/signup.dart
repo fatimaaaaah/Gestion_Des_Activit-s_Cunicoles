@@ -7,22 +7,23 @@ import './ferme.dart';
 class SignupPage extends StatefulWidget {
   @override
   _SignupPageState createState() => _SignupPageState();
-  class _SignupPageState extends State<SignupPage> {
+}
+
+class _SignupPageState extends State<SignupPage> {
   final _formKey = GlobalKey<FormState>();
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
+
   final _nameController = TextEditingController();
   final _surnameController = TextEditingController();
   final _dobController = TextEditingController();
-  final _locationController = TextEditingController
+  final _locationController = TextEditingController();
   final _phoneController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
   String? _selectedGender;
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -144,12 +145,16 @@ class SignupPage extends StatefulWidget {
     if (_formKey.currentState!.validate()) {
       if (_passwordController.text == _confirmPasswordController.text) {
         try {
-          UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+          UserCredential userCredential =
+              await _auth.createUserWithEmailAndPassword(
             email: _emailController.text,
             password: _passwordController.text,
           );
 
-          await _firestore.collection('users').doc(userCredential.user!.uid).set({
+          await _firestore
+              .collection('users')
+              .doc(userCredential.user!.uid)
+              .set({
             'nom': _nameController.text,
             'prenom': _surnameController.text,
             'sexe': _selectedGender,
@@ -323,7 +328,8 @@ class PasswordField extends StatelessWidget {
 class ConfirmPasswordField extends StatelessWidget {
   final TextEditingController controller;
 
-  const ConfirmPasswordField({Key? key, required this.controller}) : super(key: key);
+  const ConfirmPasswordField({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
