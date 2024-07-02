@@ -31,7 +31,10 @@ class JournalAchats extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Historique des Achats'),
+      centerTitle: true,
+      backgroundColor: Colors.green,
+        title: Text('Historique des Achats',
+         style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
       ),
       body: ListView.builder(
         itemCount: purchases.length,
@@ -46,8 +49,6 @@ class JournalAchats extends StatelessWidget {
             subtitle: Text('${purchase.price.toStringAsFixed(2)} CFA - ${purchase.date.day}/${purchase.date.month}/${purchase.date.year}\nQuantité: ${purchase.quantity}'),
             trailing: Icon(Icons.arrow_forward),
             onTap: () {
-              // Action when tapping on the purchase history item
-              // For example, navigate to a detailed view of the purchase
             },
           );
         },

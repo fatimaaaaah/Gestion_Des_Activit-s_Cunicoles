@@ -14,6 +14,7 @@ class FicheSujets extends StatelessWidget {
         title: Text('Fiche de ${rabbit.name}',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
         ),
       ),

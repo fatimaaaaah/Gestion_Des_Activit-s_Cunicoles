@@ -38,8 +38,14 @@ class _PorteeDetailsScreenState extends State<PorteeDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         centerTitle: true,
         backgroundColor: Colors.green,
-        title: Text('Détails de ${widget.femelle.name}'),
+        title: Text('Détails de ${widget.femelle.name}',
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
+        ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),

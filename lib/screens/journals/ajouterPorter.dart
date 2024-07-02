@@ -8,6 +8,7 @@ class AjouterPorteeScreen extends StatefulWidget {
 
 class _AjouterPorteeScreenState extends State<AjouterPorteeScreen> {
   late TextEditingController nombreController;
+  late TextEditingController namefemelle;
   DateTime? selectedDate;
   TimeOfDay? selectedTime;
 
@@ -15,11 +16,13 @@ class _AjouterPorteeScreenState extends State<AjouterPorteeScreen> {
   void initState() {
     super.initState();
     nombreController = TextEditingController();
+    namefemelle = TextEditingController();
   }
 
   @override
   void dispose() {
     nombreController.dispose();
+    namefemelle.dispose();
     super.dispose();
   }
 
@@ -28,7 +31,13 @@ class _AjouterPorteeScreenState extends State<AjouterPorteeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text('Ajouter une Nouvelle Portée'),
+         centerTitle: true,
+        title: Text('Ajouter une Nouvelle Portée',
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
+        ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -50,9 +59,11 @@ class _AjouterPorteeScreenState extends State<AjouterPorteeScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _buildSectionTitle('Détails de la Portée'),
+              _buildTextInputField('Nom de la femelle', namefemelle, TextInputType.text),
+              _buildTextInputField('Nombre de lapereaux', nombreController, TextInputType.number),
               _buildDateField('Date de mise bas', selectedDate),
               _buildTimeField('Heure de mise bas', selectedTime),
-              _buildTextInputField('Nombre de lapereaux', nombreController, TextInputType.number),
+             
               SizedBox(height: 20),
               _buildSectionTitle('Actions'),
               SizedBox(height: 10),

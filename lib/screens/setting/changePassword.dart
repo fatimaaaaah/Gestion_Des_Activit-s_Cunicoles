@@ -6,10 +6,14 @@ class ChangePasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Changer mon mot de passe'),
+        backgroundColor: Colors.green,
+        title: Text('Changer mon mot de passe',
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),),
          centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

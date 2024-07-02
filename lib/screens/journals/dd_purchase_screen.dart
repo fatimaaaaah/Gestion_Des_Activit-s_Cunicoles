@@ -16,6 +16,7 @@ class _AddPurchaseScreenState extends State<AddPurchaseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         centerTitle: true,
         title: Text('Ajouter un nouvel achat'),
       ),
       body: Padding(

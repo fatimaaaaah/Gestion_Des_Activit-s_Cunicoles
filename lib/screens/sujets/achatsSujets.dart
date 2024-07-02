@@ -26,7 +26,7 @@ class DetailLapin extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Détails de ${lapin.nom}',
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black,),
         ),
         backgroundColor: Colors.green,
       ),
@@ -129,8 +129,8 @@ class AchatsSujets extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Achat de sujets',
-        style: TextStyle(fontWeight: FontWeight.bold),
+        title: const Text('Achat de sujets',
+        style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
         ),
         backgroundColor: Colors.green,
       ),
@@ -139,7 +139,7 @@ class AchatsSujets extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Liste des Lapins Disponibles',
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),

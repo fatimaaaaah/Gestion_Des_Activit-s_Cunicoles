@@ -29,7 +29,6 @@ class _AddRabbitFormState extends State<AddRabbitForm> {
         title: const Text('Ajouter un Lapin',
         style: TextStyle(
           color: Colors.black,
-          fontSize: 20,
           fontWeight: FontWeight.bold,
         ),),
         backgroundColor: Colors.green,

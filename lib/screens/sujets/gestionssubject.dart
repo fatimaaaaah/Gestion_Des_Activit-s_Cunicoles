@@ -43,7 +43,7 @@ class _GestionsSujetsState extends State<GestionsSujets> {
         backgroundColor: Colors.green, // Fond de l'appBar vert
         title: const Text(
           'Gestions des Lapins',
-          style: TextStyle(fontWeight: FontWeight.bold), // Titre en gras
+          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black,), // Titre en gras
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),

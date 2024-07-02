@@ -46,7 +46,7 @@ class _VentesSujetsState extends State<VentesSujets> {
         backgroundColor: Colors.green,
         title: const Text(
           'Mettre un Lapin en Vente',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black,),
         ),
       ),
       body: Column(
@@ -146,6 +146,7 @@ class _AddRabbitScreenState extends State<AddRabbitScreen> {
           'Ajouter un nouveau lapin',
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
         ),
       ),
@@ -263,7 +264,7 @@ class _SellRabbitScreenState extends State<SellRabbitScreen> {
       appBar: AppBar(
         title: Text(
           'Mettre en vente ${widget.rabbit.name}',
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black,),
         ),
       ),
       body: Padding(

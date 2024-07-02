@@ -6,7 +6,12 @@ class PrivacyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Conditions dutilisation'),
+        backgroundColor: Colors.green,
+        title: Text('Conditions dutilisation',
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),),
           centerTitle: true,
       ),
      

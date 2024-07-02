@@ -9,6 +9,7 @@ class JournalReproduction extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
+         centerTitle: true,
         title: const Text(
           'Reproduction',
           style: TextStyle(
@@ -26,16 +27,6 @@ class FemellesListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Text('Liste des Femelles'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
       body: ListView.builder(
         itemCount: femellesList.length,
         itemBuilder: (context, index) {

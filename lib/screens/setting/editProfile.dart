@@ -6,10 +6,14 @@ class EditProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editer mon profil'),
+        backgroundColor: Colors.green,
+        title: Text('Editer mon profil',
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),),
          centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

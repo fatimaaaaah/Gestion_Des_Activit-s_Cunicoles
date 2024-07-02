@@ -5,7 +5,13 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Paramètres'),
+        backgroundColor: Colors.green,
+        centerTitle: true,
+        title: Text('Paramètres',
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),),
       ),
       body: Center(
         child: Text('Contenu de la page de paramètres'),

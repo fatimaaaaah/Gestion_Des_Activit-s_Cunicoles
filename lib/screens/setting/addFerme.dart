@@ -8,13 +8,13 @@ class AddFerme extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.green,
         title: Text(
           'Ajouter une ferme',
-           style: TextStyle(fontWeight: FontWeight.bold),
+           style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black),
         ),
          centerTitle: true, 
         elevation: 0,
-        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
            Navigator.pushReplacement(

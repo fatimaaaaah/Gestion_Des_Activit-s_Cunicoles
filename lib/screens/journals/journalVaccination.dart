@@ -46,7 +46,11 @@ class JournalVaccination extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Journal des Vaccinations'),
+         centerTitle: true,
+        backgroundColor: Colors.green,
+        title: const Text('Journal des Vaccinations',
+        style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold)),
+        
       ),
       body: ListView.builder(
         itemCount: _vaccinationHistory.length,
@@ -135,6 +139,7 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         centerTitle: true,
         title: const Text('Nouvelle Fiche Médicale'),
       ),
       body: Padding(
