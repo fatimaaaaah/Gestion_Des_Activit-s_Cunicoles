@@ -8,11 +8,11 @@ class NewPasswordPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
         title: const Text(
           "Nouveau mot de passe",
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 20.0,
+            color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -120,3 +120,10 @@ class _PasswordFieldState extends State<PasswordField> {
     );
   }
 }
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: NewPasswordPage(),
+  ));
+}
+

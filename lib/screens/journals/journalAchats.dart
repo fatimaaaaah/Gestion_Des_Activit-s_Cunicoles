@@ -24,7 +24,7 @@ class JournalAchats extends StatelessWidget {
     Purchase(productName: 'Foin', price: 2000.0, date: DateTime(2024, 6, 5), category: 'Nourriture', quantity: 1),
     Purchase(productName: 'Médicament', price: 1500.0, date: DateTime(2024, 6, 10), category: 'Matériel', quantity: 3),
     Purchase(productName: 'Bouteilles d\'eau', price: 500.0, date: DateTime(2024, 6, 15), category: 'Matériel', quantity: 5),
-    Purchase(productName: 'Lapin 1', price: 5000.0, date: DateTime(2024, 6, 20), category: 'Lapin', quantity: 1),
+    Purchase(productName: 'Guindo', price: 5000.0, date: DateTime(2024, 6, 20), category: 'Lapin', quantity: 1),
   ];
 
   @override
@@ -71,3 +71,11 @@ class JournalAchats extends StatelessWidget {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: JournalAchats(),
+  ));
+}
+

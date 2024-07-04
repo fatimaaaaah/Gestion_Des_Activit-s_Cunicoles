@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:projetlicence/screens/acceuil/home.dart';
@@ -16,7 +15,6 @@ import 'package:projetlicence/screens/journals/journalVaccination.dart';
 import 'package:projetlicence/screens/journals/journalVente.dart';
 import 'package:projetlicence/screens/notations/notations.dart';
 import 'package:projetlicence/screens/notifications/notifcation_tap.dart';
-import 'package:projetlicence/screens/acceuil/home.dart';
 
 
 void main() async {
@@ -31,6 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Gestion des activités cunicoles',
       initialRoute: '/',
       routes: {

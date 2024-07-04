@@ -1,18 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:projetlicence/screens/profil/profil.dart';
 import '../drawer/drawer_screen.dart';
-import '../notifications/notifcation_tap.dart';
-import '../profil/profil.dart';
-import '../deconnexion/deconnexion.dart';
-import '../sujets/ficheSujets.dart';
-import '../sujets/gestionsSubject.dart';
-import '../sujets/ventesSujets.dart';
-import '../sujets/achatsSujets.dart';
-import '../journals/journalReproduction.dart';
-import '../journals/journalVaccination.dart';
-import '../journals/journalVente.dart';
-import '../notations/notations.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -187,6 +176,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     animation: _animation,
                     delay: 400,
                     child: const DashboardCard(
+                      // ignore: deprecated_member_use
                       icon: FontAwesomeIcons.heartbeat,
                       title: 'Lapins en Gestation',
                       value: '3',
@@ -329,7 +319,7 @@ class DashboardCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center, // Centrer verticalement le contenu
           children: <Widget>[
             FaIcon(
               icon,
@@ -337,19 +327,25 @@ class DashboardCard extends StatelessWidget {
               color: Colors.white,
             ),
             SizedBox(height: 10.0),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.white,
+            Center( // Centrer horizontalement le titre
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
             SizedBox(height: 3.0),
-            Text(
-              value,
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.white,
+            Center( // Centrer horizontalement la valeur
+              child: Text(
+                value,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
           ],
@@ -419,4 +415,11 @@ class AdviceCard extends StatelessWidget {
       ),
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: HomePage(),
+  ));
 }

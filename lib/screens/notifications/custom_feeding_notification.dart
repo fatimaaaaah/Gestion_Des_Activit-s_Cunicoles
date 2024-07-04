@@ -56,3 +56,11 @@ class CustomFeedingNotification extends StatelessWidget {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: CustomFeedingNotification(),
+  ));
+}
+

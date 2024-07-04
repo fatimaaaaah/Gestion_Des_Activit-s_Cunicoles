@@ -177,6 +177,7 @@ class AchatsSujets extends StatelessWidget {
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     title: 'Achat de sujets',
     home: AchatsSujets(),
   ));

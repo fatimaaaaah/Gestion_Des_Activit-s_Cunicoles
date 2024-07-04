@@ -21,3 +21,11 @@ class PrivacyPage extends StatelessWidget {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: PrivacyPage(),
+  ));
+}
+

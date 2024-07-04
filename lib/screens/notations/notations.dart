@@ -50,6 +50,7 @@ class Notations extends StatelessWidget {
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: Notations(),
   ));
 }

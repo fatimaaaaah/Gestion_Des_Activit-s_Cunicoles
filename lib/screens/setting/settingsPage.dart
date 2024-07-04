@@ -19,3 +19,11 @@ class SettingsPage extends StatelessWidget {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: SettingsPage(),
+  ));
+}
+

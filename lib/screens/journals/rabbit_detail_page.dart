@@ -61,3 +61,5 @@ class RabbitDetailPage extends StatelessWidget {
     );
   }
 }
+
+

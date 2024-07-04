@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../acceuil/home.dart';
 import '../authentification/signup.dart';
 import '../description/description.dart';
 
@@ -35,7 +34,7 @@ class FermePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Image.asset(
-                "../../../assets/images/logo/images.png", 
+                "assets/images/logo/images.png", 
                 height: 50,
                 width: 50,
                 fit: BoxFit.contain,
@@ -171,4 +170,11 @@ class InputField extends StatelessWidget {
       ],
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: FermePage(),
+  ));
 }

@@ -60,3 +60,11 @@ class FemellesListScreen extends StatelessWidget {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: FemellesListScreen(),
+  ));
+}
+

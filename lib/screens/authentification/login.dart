@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../acceuil/home.dart';
+import './password/newPassword.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool _rememberMe = false; // Ajout du booléen pour se souvenir de l'utilisateur
 
   void _signIn(BuildContext context) async {
     try {
@@ -51,6 +53,19 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  void _toggleRememberMe(bool? value) {
+    setState(() {
+      _rememberMe = value ?? false;
+    });
+  }
+
+  void _forgotPassword(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,92 +85,119 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Image.asset(
-                "./../../assets/images/logo/images.png",
-                height: 50,
-                width: 50,
-                fit: BoxFit.contain,
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Image.asset(
+                  "assets/images/logo/images.png",
+                  height: 50,
+                  width: 50,
+                  fit: BoxFit.contain,
+                ),
               ),
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Text(
-                        "Gestion des activités cunicoles",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 20),
-                      Text(
-                        "Accédez à vos ressources et gérez vos lapins facilement.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    child: Column(
+              Flexible(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Column(
                       children: <Widget>[
-                        inputFile(controller: _emailController, label: "Nom d'utilisateur"),
-                        SizedBox(height: 10),
-                        PasswordField(controller: _passwordController),
+                        Text(
+                          "Gestion des activités cunicoles",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          "Accédez à vos ressources et gérez vos lapins facilement.",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.grey[700],
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                      padding: EdgeInsets.only(top: 3, left: 3),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(80),
-                        border: Border(
-                          bottom: BorderSide(color: Colors.black),
-                          top: BorderSide(color: Colors.black),
-                          left: BorderSide(color: Colors.black),
-                          right: BorderSide(color: Colors.black),
-                        ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40),
+                      child: Column(
+                        children: <Widget>[
+                          inputFile(controller: _emailController, label: "Email"),
+                          SizedBox(height: 10),
+                          PasswordField(controller: _passwordController),
+                        ],
                       ),
-                      child: MaterialButton(
-                        minWidth: 300,
-                        height: 60,
-                        onPressed: () {
-                          _signIn(context);
-                        },
-                        color: Colors.green,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Checkbox(
+                                value: _rememberMe,
+                                onChanged: _toggleRememberMe,
+                                activeColor: Colors.green,
+                              ),
+                              Text("Se souvenir de moi"),
+                            ],
+                          ),
+                          TextButton(
+                            onPressed: () => _forgotPassword(context),
+                            child: Text(
+                              "Mot de passe oublié",
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Container(
+                        padding: EdgeInsets.only(top: 3, left: 3),
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(80),
+                          border: Border(
+                            bottom: BorderSide(color: Colors.black),
+                            top: BorderSide(color: Colors.black),
+                            left: BorderSide(color: Colors.black),
+                            right: BorderSide(color: Colors.black),
+                          ),
                         ),
-                        child: Text(
-                          "Se connecter",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Colors.black,
+                        child: MaterialButton(
+                          minWidth: 300,
+                          height: 60,
+                          onPressed: () {
+                            _signIn(context);
+                          },
+                          color: Colors.green,
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(80),
+                          ),
+                          child: Text(
+                            "Se connecter",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -205,25 +247,11 @@ class PasswordField extends StatefulWidget {
 
 class _PasswordFieldState extends State<PasswordField> {
   bool _obscureText = true;
-  bool _rememberMe = false;
 
   void _toggleVisibility() {
     setState(() {
       _obscureText = !_obscureText;
     });
-  }
-
-  void _toggleRememberMe(bool? value) {
-    setState(() {
-      _rememberMe = value ?? false;
-    });
-  }
-
-  void _forgotPassword(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
-    );
   }
 
   @override
@@ -256,29 +284,6 @@ class _PasswordFieldState extends State<PasswordField> {
               borderSide: BorderSide(color: Colors.black),
             ),
           ),
-        ),
-        SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Checkbox(
-                  value: _rememberMe,
-                  onChanged: _toggleRememberMe,
-                  activeColor: Colors.green,
-                ),
-                Text("Se souvenir de moi"),
-              ],
-            ),
-            TextButton(
-              onPressed: () => _forgotPassword(context),
-              child: Text(
-                "Mot de passe oublié",
-                style: TextStyle(color: Colors.blue),
-              ),
-            ),
-          ],
         ),
       ],
     );
@@ -317,7 +322,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Logique pour envoyer le lien de réinitialisation
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => NewPasswordPage()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
@@ -337,4 +342,11 @@ class ForgotPasswordPage extends StatelessWidget {
       ),
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: LoginPage(),
+  ));
 }

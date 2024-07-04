@@ -193,7 +193,7 @@ class _AlimentationPageState extends State<AlimentationPage> {
             children: <Widget>[
               TextField(
                 controller: _rabbitIdController,
-                decoration: const InputDecoration(labelText: 'Identifiant du Lapin'),
+                decoration: const InputDecoration(labelText: 'Nom du Lapin'),
               ),
               TextField(
                 controller: _dailyConsumptionController,
@@ -337,6 +337,7 @@ class _AlimentationPageState extends State<AlimentationPage> {
 
 void main() {
   runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
     home: AlimentationPage(),
   ));
 }
