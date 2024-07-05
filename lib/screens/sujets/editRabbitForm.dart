@@ -1,19 +1,19 @@
-import 'package:flutter/material.dart';
 import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:projetlicence/constants/rabbit.dart';
-import 'package:projetlicence/services/database.dart';
+import '../../constants/rabbit.dart';
 
-class AddRabbitForm extends StatefulWidget {
-  final Function(Rabbit) onAddRabbit;
+class EditRabbitForm extends StatefulWidget {
+  final Rabbit rabbit;
 
-  AddRabbitForm({required this.onAddRabbit});
+  EditRabbitForm({required this.rabbit});
 
   @override
-  _AddRabbitFormState createState() => _AddRabbitFormState();
+  _EditRabbitFormState createState() => _EditRabbitFormState();
 }
 
-class _AddRabbitFormState extends State<AddRabbitForm> {
+class _EditRabbitFormState extends State<EditRabbitForm> {
   File? _image;
   TextEditingController nameController = TextEditingController();
   TextEditingController ageController = TextEditingController();
@@ -21,7 +21,15 @@ class _AddRabbitFormState extends State<AddRabbitForm> {
   TextEditingController genderController = TextEditingController();
 
   final picker = ImagePicker();
-  final FirestoreService _firestoreService = FirestoreService();
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.text = widget.rabbit.name;
+    ageController.text = widget.rabbit.age.toString();
+    weightController.text = widget.rabbit.weight.toString();
+    genderController.text = widget.rabbit.gender;
+  }
 
   Future getImage() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -39,7 +47,7 @@ class _AddRabbitFormState extends State<AddRabbitForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ajouter un nouveau lapin'),
+        title: Text('Modifier le lapin'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -71,19 +79,18 @@ class _AddRabbitFormState extends State<AddRabbitForm> {
             ),
             SizedBox(height: 20.0),
             ElevatedButton(
-              onPressed: () async {
-                Rabbit newRabbit = Rabbit(
+              onPressed: () {
+                Rabbit updatedRabbit = Rabbit(
                   name: nameController.text,
                   age: int.parse(ageController.text),
                   weight: double.parse(weightController.text),
                   gender: genderController.text,
-                  imagePath: _image != null ? _image!.path : null,
+                  imagePath: _image?.path ?? widget.rabbit.imagePath,
                 );
-                await _firestoreService.addRabbit(newRabbit);
-                widget.onAddRabbit(newRabbit);
-                Navigator.pop(context); // Retourner à la page précédente
+
+                Navigator.pop(context, updatedRabbit);
               },
-              child: Text('Ajouter le lapin'),
+              child: Text('Enregistrer les modifications'),
             ),
           ],
         ),

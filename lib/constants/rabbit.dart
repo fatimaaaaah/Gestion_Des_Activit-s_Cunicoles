@@ -1,4 +1,6 @@
 import 'dart:io';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 // lib/constants/rabbit.dart
 
 class Rabbit {
@@ -23,5 +25,7 @@ class Rabbit {
     this.origin,
     this.dateAdded,
   });
+
+  static fromFirestore(QueryDocumentSnapshot<Map<String, dynamic>> doc) {}
 }
 

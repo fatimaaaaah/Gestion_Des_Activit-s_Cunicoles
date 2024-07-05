@@ -1,8 +1,7 @@
-// lib/screens/sujets/gestionsSubject.dart
-
 import 'package:flutter/material.dart';
 import 'package:projetlicence/screens/sujets/ficheSujets.dart';
-import './AddRabbitForm.dart'; // Assurez-vous que le fichier est dans le bon répertoire
+import 'package:projetlicence/screens/sujets/addRabbitForm.dart';
+import 'package:projetlicence/screens/sujets/editRabbitForm.dart'; // Importez le fichier du formulaire d'édition
 import '../../constants/rabbit.dart';
 
 class GestionsSujets extends StatefulWidget {
@@ -14,16 +13,6 @@ class _GestionsSujetsState extends State<GestionsSujets> {
   List<Rabbit> rabbits = [
     Rabbit(name: "Lapin 1", age: 6, weight: 2.5, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
     Rabbit(name: "Lapin 2", age: 8, weight: 3.0, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
-    Rabbit(name: "Lapin 3", age: 4, weight: 2.8, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
-    Rabbit(name: "Lapin 4", age: 6, weight: 2.5, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
-    Rabbit(name: "Lapin 5", age: 8, weight: 3.0, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
-    Rabbit(name: "Lapin 6", age: 4, weight: 2.8, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
-    Rabbit(name: "Lapin 7", age: 6, weight: 2.5, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
-    Rabbit(name: "Lapin 8", age: 8, weight: 3.0, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
-    Rabbit(name: "Lapin 9", age: 4, weight: 2.8, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
-    Rabbit(name: "Lapin 10", age: 6, weight: 2.5, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
-    Rabbit(name: "Lapin 11", age: 8, weight: 3.0, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
-    Rabbit(name: "Lapin 12", age: 4, weight: 2.8, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
     // Ajoutez plus de lapins ici si nécessaire
   ];
 
@@ -40,20 +29,20 @@ class _GestionsSujetsState extends State<GestionsSujets> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green, // Fond de l'appBar vert
+        backgroundColor: Colors.green,
         title: const Text(
           'Gestions des Lapins',
-          style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black,), // Titre en gras
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.of(context).pop(); // Retourner à la page précédente
+            Navigator.of(context).pop();
           },
         ),
       ),
       body: Container(
-        color: Colors.grey[200], // Fond gris clair
+        color: Colors.grey[200],
         child: Column(
           children: [
             Padding(
@@ -86,7 +75,7 @@ class _GestionsSujetsState extends State<GestionsSujets> {
                   return Padding(
                     padding: EdgeInsets.all(10.0),
                     child: Card(
-                      color: Colors.white, // Fond de la carte en blanc
+                      color: Colors.white,
                       elevation: 2.0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
@@ -134,22 +123,57 @@ class _GestionsSujetsState extends State<GestionsSujets> {
                                   ],
                                 ),
                                 Spacer(),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => FicheSujets(rabbit: filteredRabbits[index]),
+                                Column(
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => FicheSujets(rabbit: filteredRabbits[index]),
+                                          ),
+                                        );
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.green,
                                       ),
-                                    );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.green,
-                                  ),
-                                  child: const Text(
-                                    'Voir Plus',
-                                    style: TextStyle(fontSize: 15.0, color: Colors.white),
-                                  ),
+                                      child: const Text(
+                                        'Voir Plus',
+                                        style: TextStyle(fontSize: 15.0, color: Colors.white),
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        IconButton(
+                                          icon: Icon(Icons.edit),
+                                          onPressed: () async {
+                                            Rabbit? updatedRabbit = await Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => EditRabbitForm(rabbit: filteredRabbits[index]),
+                                              ),
+                                            );
+
+                                            if (updatedRabbit != null) {
+                                              setState(() {
+                                                rabbits[index] = updatedRabbit;
+                                                filteredRabbits = rabbits;
+                                              });
+                                            }
+                                          },
+                                        ),
+                                        IconButton(
+                                          icon: Icon(Icons.delete),
+                                          onPressed: () {
+                                            setState(() {
+                                              rabbits.removeAt(index);
+                                              filteredRabbits = rabbits;
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
