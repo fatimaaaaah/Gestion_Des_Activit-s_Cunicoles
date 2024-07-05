@@ -65,7 +65,7 @@ class JournalVaccination extends StatelessWidget {
             ),
             title: Text(rabbit.name),
             subtitle: Text(
-                'Vaccination contre ${record['treatmentType']}\nAdministérée le ${_formatDate(record['dateAdministered'])}'),
+                '${record['treatmentType']}\nAdministrée le ${_formatDate(record['dateAdministered'])}'),
             onTap: () {
               _showDetailsDialog(context, record);
             },
