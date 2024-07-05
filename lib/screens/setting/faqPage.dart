@@ -15,3 +15,11 @@ class FaqPage extends StatelessWidget {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: FaqPage(),
+  ));
+}
+

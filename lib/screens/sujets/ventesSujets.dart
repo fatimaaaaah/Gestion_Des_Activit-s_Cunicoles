@@ -4,6 +4,7 @@ import 'dart:io';
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: VentesSujets(),
     theme: ThemeData(
       primarySwatch: Colors.green,
@@ -34,9 +35,9 @@ class VentesSujets extends StatefulWidget {
 
 class _VentesSujetsState extends State<VentesSujets> {
   final List<Rabbit> rabbits = [
-    Rabbit(name: 'Lapin 1', age: 2),
-    Rabbit(name: 'Lapin 2', age: 1),
-    Rabbit(name: 'Lapin 3', age: 3),
+    Rabbit(name: 'Mansour', age: 2),
+    Rabbit(name: 'Aby', age: 1),
+    Rabbit(name: 'Lamine', age: 3),
   ];
 
   @override

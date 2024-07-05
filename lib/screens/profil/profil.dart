@@ -125,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
             Center(
               child: CircleAvatar(
                 radius: 20, // Taille du cercle d'avatar pour l'exemple
-                backgroundImage: AssetImage('../../../assets/images/profil/4.png'),
+                backgroundImage: AssetImage('assets/images/profil/4.png'),
                 backgroundColor: Colors.white,
               ),
             ),
@@ -134,7 +134,7 @@ class ProfileScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
-                  'User Name',
+                  'Fatima Nguénar Diouf',
                   style: TextStyle(
                     fontSize: 24, // Taille du texte du nom pour l'exemple
                     fontWeight: FontWeight.bold,
@@ -147,7 +147,7 @@ class ProfileScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
-                  'user@example.com',
+                  'fatimadiouf@gmail.com',
                   style: TextStyle(
                     fontSize: 12, // Taille du texte de l'email pour l'exemple
                   ),
@@ -222,3 +222,11 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: ProfileScreen(),
+  ));
+}
+

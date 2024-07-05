@@ -16,8 +16,14 @@ class _AddPurchaseScreenState extends State<AddPurchaseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
          centerTitle: true,
-        title: Text('Ajouter un nouvel achat'),
+        title: Text('Ajouter un nouvel achat',
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -51,7 +57,12 @@ class _AddPurchaseScreenState extends State<AddPurchaseScreen> {
                 onPressed: () {
                   _saveNewPurchase(context);
                 },
-                child: Text('Enregistrer'),
+                child: Text('Enregistrer',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+                ),
               ),
             ),
           ],
@@ -95,3 +106,11 @@ class _AddPurchaseScreenState extends State<AddPurchaseScreen> {
     super.dispose();
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: AddPurchaseScreen(),
+  ));
+}
+

@@ -1,9 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:projetlicence/screens/journals/femelleRabbit.dart';
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: JournalVaccination(),
     theme: ThemeData(
       primarySwatch: Colors.green,
@@ -30,12 +31,12 @@ class Rabbit {
 class JournalVaccination extends StatelessWidget {
   final List<Map<String, dynamic>> _vaccinationHistory = [
     {
-      'rabbit': Rabbit(name: 'Lapin 1', age: 2),
+      'rabbit': Rabbit(name: 'baba', age: 2),
       'treatmentType': 'Vaccination contre la Myxomatose',
       'dateAdministered': DateTime(2024, 6, 15, 10, 30), // Exemple avec heure
     },
     {
-      'rabbit': Rabbit(name: 'Lapin 2', age: 1),
+      'rabbit': Rabbit(name: 'fatima', age: 1),
       'treatmentType': 'Vaccination contre la VHD',
       'dateAdministered': DateTime(2024, 6, 20, 9, 0), // Exemple avec heure
     },
@@ -131,7 +132,7 @@ class MedicalRecordForm extends StatefulWidget {
 
 class _MedicalRecordFormState extends State<MedicalRecordForm> {
   final _formKey = GlobalKey<FormState>();
-  String _rabbitId = '';
+  String? _selectedRabbitName;
   String _treatmentType = '';
   DateTime? _dateAdministered;
 
@@ -139,8 +140,15 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         centerTitle: true,
-        title: const Text('Nouvelle Fiche Médicale'),
+        centerTitle: true,
+        backgroundColor: Colors.green,
+        title: const Text(
+          'Nouvelle Fiche Médicale',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -149,22 +157,10 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Nom du Lapin'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Veuillez entrer le nom du Lapin';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _rabbitId = value!;
-                },
-              ),
+              _buildRabbitDropdownField(),
               const SizedBox(height: 20.0),
               TextFormField(
-                decoration:
-                    const InputDecoration(labelText: 'Type de Traitement'),
+                decoration: const InputDecoration(labelText: 'Type de Traitement'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Veuillez entrer le type de traitement';
@@ -228,7 +224,13 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green, // Fond du bouton en vert
                 ),
-                child: const Text('Enregistrer'),
+                child: const Text(
+                  'Enregistrer',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ],
           ),
@@ -237,9 +239,38 @@ class _MedicalRecordFormState extends State<MedicalRecordForm> {
     );
   }
 
+  Widget _buildRabbitDropdownField() {
+    List<String> availableRabbitNames = femellesList.map((rabbit) => rabbit.name).toList();
+
+    return DropdownButtonFormField<String>(
+      value: _selectedRabbitName,
+      onChanged: (newValue) {
+        setState(() {
+          _selectedRabbitName = newValue;
+        });
+      },
+      validator: (value) {
+        if (value == null) {
+          return 'Veuillez sélectionner un lapin';
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: 'Nom du Lapin',
+        border: OutlineInputBorder(),
+      ),
+      items: availableRabbitNames.map((name) {
+        return DropdownMenuItem<String>(
+          value: name,
+          child: Text(name),
+        );
+      }).toList(),
+    );
+  }
+
   void _saveMedicalRecord() {
     final newRecord = {
-      'rabbitId': _rabbitId,
+      'rabbitName': _selectedRabbitName,
       'treatmentType': _treatmentType,
       'dateAdministered': _dateAdministered,
     };

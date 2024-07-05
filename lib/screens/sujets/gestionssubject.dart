@@ -11,18 +11,49 @@ class GestionsSujets extends StatefulWidget {
 
 class _GestionsSujetsState extends State<GestionsSujets> {
   List<Rabbit> rabbits = [
-    Rabbit(name: "Lapin 1", age: 6, weight: 2.5, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
-    Rabbit(name: "Lapin 2", age: 8, weight: 3.0, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
+
+    Rabbit(name: "Mamadou", age: 6, weight: 2.5, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
+    Rabbit(name: "Awa", age: 8, weight: 3.0, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
+    Rabbit(name: "Samba", age: 4, weight: 2.8, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
+    Rabbit(name: "Ndeye", age: 6, weight: 2.5, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
+    Rabbit(name: "Adama", age: 8, weight: 3.0, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
+    Rabbit(name: "Khady", age: 4, weight: 2.8, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
+    Rabbit(name: "Malick", age: 6, weight: 2.5, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
+    Rabbit(name: "Fatou", age: 8, weight: 3.0, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
+    Rabbit(name: "Ngor", age: 4, weight: 2.8, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
+    Rabbit(name: "Binta", age: 6, weight: 2.5, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
+    Rabbit(name: "Ousmane", age: 8, weight: 3.0, gender: 'Masculin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
+    Rabbit(name: "Diarra", age: 4, weight: 2.8, gender: 'Féminin', imagePath: '../../../assets/images/achatsLapins/background.jpg'),
     // Ajoutez plus de lapins ici si nécessaire
   ];
 
   List<Rabbit> filteredRabbits = [];
   TextEditingController searchController = TextEditingController();
 
+  // Filtering parameters
+  String selectedGender = 'Tous';
+  double minAge = 0;
+  double maxAge = 12;
+  double minWeight = 0;
+  double maxWeight = 5;
+
   @override
   void initState() {
     super.initState();
     filteredRabbits = rabbits;
+  }
+
+  void filterRabbits() {
+    List<Rabbit> searchResult = rabbits.where((rabbit) {
+      return rabbit.name.toLowerCase().contains(searchController.text.toLowerCase()) &&
+             (selectedGender == 'Tous' || rabbit.gender == selectedGender) &&
+             rabbit.age >= minAge && rabbit.age <= maxAge &&
+             rabbit.weight >= minWeight && rabbit.weight <= maxWeight;
+    }).toList();
+
+    setState(() {
+      filteredRabbits = searchResult;
+    });
   }
 
   @override
@@ -40,6 +71,106 @@ class _GestionsSujetsState extends State<GestionsSujets> {
             Navigator.of(context).pop();
           },
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.filter_list),
+            onPressed: () {
+              showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Genre:', style: TextStyle(fontSize: 18)),
+                            DropdownButton<String>(
+                              value: selectedGender,
+                              items: ['Tous', 'Masculin', 'Féminin'].map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (newValue) {
+                                setState(() {
+                                  selectedGender = newValue!;
+                                  filterRabbits();
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Âge (mois):', style: TextStyle(fontSize: 18)),
+                            RangeSlider(
+                              values: RangeValues(minAge, maxAge),
+                              min: 0,
+                              max: 12,
+                              divisions: 12,
+                              activeColor: Colors.black, // Couleur active en noir
+                              inactiveColor: Colors.grey[400], // Couleur inactive en gris
+                              labels: RangeLabels('$minAge', '$maxAge'),
+                              onChanged: (RangeValues values) {
+                                setState(() {
+                                  minAge = values.start;
+                                  maxAge = values.end;
+                                  filterRabbits();
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Poids (kg):', style: TextStyle(fontSize: 18)),
+                            RangeSlider(
+                              values: RangeValues(minWeight, maxWeight),
+                              min: 0,
+                              max: 5,
+                              divisions: 10,
+                              activeColor: Colors.black, // Couleur active en noir
+                              inactiveColor: Colors.grey[400], // Couleur inactive en gris
+                              labels: RangeLabels('$minWeight', '$maxWeight'),
+                              onChanged: (RangeValues values) {
+                                setState(() {
+                                  minWeight = values.start;
+                                  maxWeight = values.end;
+                                  filterRabbits();
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('Appliquer',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ],
       ),
       body: Container(
         color: Colors.grey[200],
@@ -57,7 +188,7 @@ class _GestionsSujetsState extends State<GestionsSujets> {
                   child: TextField(
                     controller: searchController,
                     onChanged: (value) {
-                      filterRabbits(value);
+                      filterRabbits();
                     },
                     decoration: InputDecoration(
                       hintText: 'Rechercher un lapin...',
@@ -198,6 +329,7 @@ class _GestionsSujetsState extends State<GestionsSujets> {
                   setState(() {
                     rabbits.add(newRabbit);
                     filteredRabbits = rabbits;
+                    filterRabbits(); // Update the filter after adding a new rabbit
                   });
                 },
               ),
@@ -210,14 +342,11 @@ class _GestionsSujetsState extends State<GestionsSujets> {
       ),
     );
   }
+}
 
-  void filterRabbits(String query) {
-    List<Rabbit> searchResult = rabbits.where((rabbit) {
-      return rabbit.name.toLowerCase().contains(query.toLowerCase());
-    }).toList();
-
-    setState(() {
-      filteredRabbits = searchResult;
-    });
-  }
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: GestionsSujets(),
+  ));
 }

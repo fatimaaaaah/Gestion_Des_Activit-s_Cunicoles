@@ -151,3 +151,11 @@ class InputField extends StatelessWidget {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: AddFerme(),
+  ));
+}
+

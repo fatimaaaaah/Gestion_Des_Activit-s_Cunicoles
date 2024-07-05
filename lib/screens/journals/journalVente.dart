@@ -258,6 +258,7 @@ class _AddVentePageState extends State<AddVentePage> {
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: JournalVente(),
   ));
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projetlicence/screens/journals/femelleRabbit.dart';
-import './femelleRabbit.dart';
 
 class PorteeDetailsScreen extends StatefulWidget {
   final FemaleRabbit femelle;

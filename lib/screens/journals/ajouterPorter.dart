@@ -168,3 +168,11 @@ class _AjouterPorteeScreenState extends State<AjouterPorteeScreen> {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: AjouterPorteeScreen(),
+  ));
+}
+

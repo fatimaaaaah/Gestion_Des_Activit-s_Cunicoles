@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../acceuil/home.dart';
 import './ferme.dart';
 
 class SignupPage extends StatefulWidget {
@@ -57,7 +56,7 @@ class _SignupPageState extends State<SignupPage> {
                 children: <Widget>[
                   SizedBox(height: 20),
                   Image.asset(
-                    "../../../assets/images/logo/images.png",
+                    "assets/images/logo/images.png",
                     height: 50,
                     width: 50,
                     fit: BoxFit.contain,
@@ -98,6 +97,7 @@ class _SignupPageState extends State<SignupPage> {
                   InputField(controller: _emailController, label: "E-mail"),
                   PasswordField(controller: _passwordController),
                   ConfirmPasswordField(controller: _confirmPasswordController),
+
                   SizedBox(height: 20),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
@@ -285,51 +285,24 @@ class GenderDropdown extends StatelessWidget {
   }
 }
 
-class PasswordField extends StatelessWidget {
-  final TextEditingController controller;
-
-  const PasswordField({Key? key, required this.controller}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          "Mot de passe",
-          style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color: Colors.black87,
-          ),
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        TextFormField(
-          controller: controller,
-          obscureText: true,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black),
-            ),
-          ),
-        ),
-        SizedBox(height: 20),
-      ],
-    );
-  }
-}
-
-class ConfirmPasswordField extends StatelessWidget {
+class ConfirmPasswordField extends StatefulWidget {
   final TextEditingController controller;
 
   const ConfirmPasswordField({Key? key, required this.controller})
       : super(key: key);
+
+  @override
+  _ConfirmPasswordFieldState createState() => _ConfirmPasswordFieldState();
+}
+
+class _ConfirmPasswordFieldState extends State<ConfirmPasswordField> {
+  bool _obscureText = true;
+
+  void _toggleVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -348,9 +321,13 @@ class ConfirmPasswordField extends StatelessWidget {
           height: 5,
         ),
         TextFormField(
-          controller: controller,
-          obscureText: true,
+          controller: widget.controller,
+          obscureText: _obscureText,
           decoration: InputDecoration(
+            suffixIcon: IconButton(
+              icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+              onPressed: _toggleVisibility,
+            ),
             contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.black),
@@ -365,3 +342,68 @@ class ConfirmPasswordField extends StatelessWidget {
     );
   }
 }
+
+class PasswordField extends StatefulWidget {
+  final TextEditingController controller;
+
+  const PasswordField({Key? key, required this.controller}) : super(key: key);
+
+  @override
+  _PasswordFieldState createState() => _PasswordFieldState();
+}
+
+class _PasswordFieldState extends State<PasswordField> {
+  bool _obscureText = true;
+
+  void _toggleVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          "Mot de passe",
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+            color: Colors.black87,
+          ),
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        TextFormField(
+          controller: widget.controller,
+          obscureText: _obscureText,
+          decoration: InputDecoration(
+            suffixIcon: IconButton(
+              icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+              onPressed: _toggleVisibility,
+            ),
+            contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.black),
+            ),
+          ),
+        ),
+        SizedBox(height: 20),
+      ],
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: SignupPage(),
+  ));
+}
+

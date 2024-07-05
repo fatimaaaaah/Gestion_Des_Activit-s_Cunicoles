@@ -240,3 +240,11 @@ class _ConfirmPasswordFieldState extends State<ConfirmPasswordField> {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: ChangePasswordPage(),
+  ));
+}
+

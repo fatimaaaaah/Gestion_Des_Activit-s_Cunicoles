@@ -114,3 +114,10 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: HomePage(),
+  ));
+}

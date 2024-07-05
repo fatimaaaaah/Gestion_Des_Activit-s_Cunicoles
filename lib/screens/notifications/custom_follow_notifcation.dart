@@ -1,9 +1,6 @@
 import 'package:projetlicence/constants/colors.dart';
-
 import 'custom_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CustomFollowNotifcation extends StatefulWidget {
   const CustomFollowNotifcation({Key? key}) : super(key: key);
@@ -68,3 +65,11 @@ class _CustomFollowNotifcationState extends State<CustomFollowNotifcation> {
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+     debugShowCheckedModeBanner: false,
+    home: CustomFollowNotifcation(),
+  ));
+}
+

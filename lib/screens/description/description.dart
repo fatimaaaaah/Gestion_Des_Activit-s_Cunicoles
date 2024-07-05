@@ -10,6 +10,7 @@ class MySliderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+       debugShowCheckedModeBanner: false,
       home: MySlider(),
     );
   }
@@ -22,11 +23,11 @@ class MySlider extends StatefulWidget {
 
 class _MySliderState extends State<MySlider> {
   final List<String> imageUrls = [
-    "../../../assets/images/description/10.png",
-    "../../../assets/images/description/1.png",
-    "../../../assets/images/description/6.png",
-    "../../../assets/images/description/3.jpg",
-    "../../../assets/images/description/9.jpg",
+    "assets/images/description/10.png",
+    "assets/images/description/1.png",
+    "assets/images/description/6.png",
+    "assets/images/description/3.jpg",
+    "assets/images/description/9.jpg",
   ];
 
   final List<String> titles = [
@@ -127,14 +128,14 @@ class _MySliderState extends State<MySlider> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
+                          WidgetStateProperty.all<Color>(Colors.white),
                       foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
-                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          WidgetStateProperty.all<Color>(Colors.white),
+                      padding: WidgetStateProperty.all<EdgeInsets>(
                         const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 10),
                       ),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
