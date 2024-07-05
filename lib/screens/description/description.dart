@@ -128,14 +128,14 @@ class _MySliderState extends State<MySlider> {
                   child: ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          WidgetStateProperty.all<Color>(Colors.white),
+                          MaterialStateProperty.all<Color>(Colors.white),
                       foregroundColor:
-                          WidgetStateProperty.all<Color>(Colors.white),
-                      padding: WidgetStateProperty.all<EdgeInsets>(
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      padding: MaterialStateProperty.all<EdgeInsets>(
                         const EdgeInsets.symmetric(
                             horizontal: 15, vertical: 10),
                       ),
-                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),

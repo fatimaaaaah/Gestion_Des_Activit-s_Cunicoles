@@ -14,10 +14,10 @@ class _DeconnexionPageState extends State<DeconnexionPage> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all<Color>(Colors.black),
-        foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
-        elevation: WidgetStateProperty.all<double>(0.9),
-        padding: WidgetStateProperty.all<EdgeInsets>(
+        backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+        elevation: MaterialStateProperty.all<double>(0.9),
+        padding: MaterialStateProperty.all<EdgeInsets>(
             const EdgeInsets.symmetric(horizontal: 20, vertical: 18)),
       ),
       onPressed: () {
