@@ -12,7 +12,7 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  bool _rememberMe = false; // Ajout du booléen pour se souvenir de l'utilisateur
+  bool _rememberMe = false;
 
   void _signIn(BuildContext context) async {
     try {
@@ -26,30 +26,24 @@ class _LoginPageState extends State<LoginPage> {
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        _showErrorDialog('No user found for that email.');
+        _showSnackbar('No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        _showErrorDialog('Wrong password provided for that user.');
+        _showSnackbar('Wrong password provided for that user.');
+      } else {
+        _showSnackbar('Veuillez vérifier vos identifiants.');
       }
+    } catch (e) {
+      _showSnackbar(
+          'An error occurred. Please check your internet connection.');
     }
   }
 
-  void _showErrorDialog(String message) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Error'),
-          content: Text(message),
-          actions: <Widget>[
-            TextButton(
-              child: Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
+  void _showSnackbar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.red,
+      ),
     );
   }
 
@@ -110,7 +104,8 @@ class _LoginPageState extends State<LoginPage> {
                         Text(
                           "Gestion des activités cunicoles",
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(height: 20),
                         Text(
@@ -127,7 +122,8 @@ class _LoginPageState extends State<LoginPage> {
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Column(
                         children: <Widget>[
-                          inputFile(controller: _emailController, label: "Email"),
+                          inputFile(
+                              controller: _emailController, label: "Email"),
                           SizedBox(height: 10),
                           PasswordField(controller: _passwordController),
                         ],
@@ -204,7 +200,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-Widget inputFile({required TextEditingController controller, required String label, bool obscureText = false}) {
+Widget inputFile(
+    {required TextEditingController controller,
+    required String label,
+    bool obscureText = false}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -273,7 +272,8 @@ class _PasswordFieldState extends State<PasswordField> {
           obscureText: _obscureText,
           decoration: InputDecoration(
             suffixIcon: IconButton(
-              icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+              icon:
+                  Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
               onPressed: _toggleVisibility,
             ),
             contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
@@ -322,7 +322,10 @@ class ForgotPasswordPage extends StatelessWidget {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => NewPasswordPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NewPasswordPage()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
